@@ -71,14 +71,14 @@ const vm = new Vue({
   data: {
     items: [],
     shop: shop,
-    kargoPrice: 10,/* Kargo Ücreti*/
-    kargo: 0,
-    kargoOptions: [
+    kargoBasePrice: <?php echo $kargoUcreti; ?>,/* Kargo Ücreti*/
+    cargoPrice: 0,
+    cargoOptions: [
       { text: 'Seçiniz', value: 0 },
       { text: 'Kargo ile', value: 10 },/* Kargo Ücreti*/
       { text: 'Kapıdan', value: 0 }
     ],
-    kargoClass: '',
+    cargoClass: '',
 
     talepBtnClass: 'disabled',
     showCart: false,
@@ -88,14 +88,16 @@ const vm = new Vue({
     total() {
       var total = 0;
       
-      for(var i = 0; i < this.items.length; i++) {
+      for (var i = 0; i < this.items.length; i++) {
         total += this.items[i].price;
-      } if ( total > 100 ) {
-        this.kargo = 0;
-        this.kargoClass = 'ucretsiz';
+      } 
+
+      if ( total > 100 ) {
+        this.cargoPrice = 0;
+        this.cargoClass = 'ucretsiz';
       } else { 
-        total += parseInt( this.kargo );
-        this.kargoClass = '';
+        total += parseInt( this.cargoPrice );
+        this.cargoClass = '';
       }
       return total;
     }
@@ -108,12 +110,12 @@ const vm = new Vue({
     removeFromCart(item) {
       item.quantity -= 1;
       this.items.splice(this.items.indexOf(item), 1);
-      if ( total < 100 ) {
-        this.kargo = this.kargoPrice;
-        this.kargoClass = '';
-        total += parseInt( this.kargo );
+      if ( this.total < 100 ) {
+        this.cargoPrice = this.cargoBasePrice;
+        this.cargoClass = '';
+        total += parseInt( this.cargoPrice );
       }
-      return total;
+      return this.total;
     },
   }
 });

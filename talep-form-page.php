@@ -120,10 +120,10 @@ include("header.php");
 						          	<span class="sepet-eleman-fiyati"><strong>{{ item.price * item.quantity }}</strong><i class="fa fa-try" aria-hidden="true"></i></span>
 						          </div>
 						        </li>
-						        <li v-show="kargo > 0" transition="fade">
-						          <div class="sepet-elemani kargo-line" v-bind:class="[kargoClass]">
+						        <li v-show="cargoPrice > 0" transition="fade">
+						          <div class="sepet-elemani kargo-line" v-bind:class="[cargoClass]">
 						          	Kargo <i class="fa fa-truck" aria-hidden="true"></i> <span class="ucretsiz-text">*100TL Üzeri ücretsiz.</span>
-						          	<span class="sepet-eleman-fiyati"><strong>{{ kargo }}</strong><i class="fa fa-try" aria-hidden="true"></i></span>
+						          	<span class="sepet-eleman-fiyati"><strong>{{ cargoPrice }}</strong><i class="fa fa-try" aria-hidden="true"></i></span>
 						          </div>
 						        </li>
 						      </ul>
@@ -136,9 +136,9 @@ include("header.php");
 
 									  <div class="form-group input-group">
 									    <span class="input-group-addon" id="basic-addon1">Teslimat Nasıl Olacak?</span>
-									    <select class="form-control" id="exampleSelect1" v-model="kargo">    	
-									      <option v-for="kargoOption in kargoOptions" v-bind:value="kargoOption.value">
-									      	{{ kargoOption.text }}
+									    <select class="form-control" id="exampleSelect1" v-model="cargoPrice">    	
+									      <option v-for="cargoOption in cargoOptions" v-bind:value="cargoOption.value">
+									      	{{ cargoOption.text }}
 									      </option>
 									    </select>
 									  </div>
