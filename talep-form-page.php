@@ -122,8 +122,8 @@ include("header.php");
 						        </li>
 						        <li v-show="kargo > 0" transition="fade">
 						          <div class="sepet-elemani kargo-line" v-bind:class="[kargoClass]">
-						          	Kargo <i class="fa fa-truck" aria-hidden="true"></i> <span class="ucretsiz-text">*100TL Üzeri siparişlerde ücretsiz kargo</span>
-						          	<span class="sepet-eleman-fiyati"><strong>10</strong><i class="fa fa-try" aria-hidden="true"></i></span>
+						          	Kargo <i class="fa fa-truck" aria-hidden="true"></i> <span class="ucretsiz-text">*100TL Üzeri ücretsiz.</span>
+						          	<span class="sepet-eleman-fiyati"><strong>{{ kargo }}</strong><i class="fa fa-try" aria-hidden="true"></i></span>
 						          </div>
 						        </li>
 						      </ul>

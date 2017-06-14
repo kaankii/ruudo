@@ -71,13 +71,15 @@ const vm = new Vue({
   data: {
     items: [],
     shop: shop,
+    kargoPrice: 10,/* Kargo Ücreti*/
     kargo: 0,
     kargoOptions: [
       { text: 'Seçiniz', value: 0 },
-      { text: 'Kargo ile', value: 10 },
+      { text: 'Kargo ile', value: 10 },/* Kargo Ücreti*/
       { text: 'Kapıdan', value: 0 }
     ],
     kargoClass: '',
+
     talepBtnClass: 'disabled',
     showCart: false,
     verified: false
@@ -106,7 +108,12 @@ const vm = new Vue({
     removeFromCart(item) {
       item.quantity -= 1;
       this.items.splice(this.items.indexOf(item), 1);
-
+      if ( total < 100 ) {
+        this.kargo = this.kargoPrice;
+        this.kargoClass = '';
+        total += parseInt( this.kargo );
+      }
+      return total;
     },
   }
 });
