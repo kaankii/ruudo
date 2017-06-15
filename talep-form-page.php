@@ -24,37 +24,19 @@ include("header.php");
 	<h2><strong>Talep Form Test</strong></h2>
 
 	<!-- Div trigger modal -->
-	<div type="button" class="btn btn-primary" data-toggle="modal" data-target="#talepForm" >
+	<div type="button" class="btn btn-primary" data-toggle="modal" data-target="#talepForm">
 		<div>Talep Formu</div>
 	</div>
-
-	<!-- Final Cart Modal -->
-	<div class="modal fade bd-example-modal-lg" id="talepForm" tabindex="-1" role="dialog" aria-labelledby="talepFormLabel" aria-hidden="true">
-	  <div class="modal-dialog modal-lg">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Arama Formu</h4>
-	      </div>
-	      <div class="modal-body">
-	      	Sizi aramamız için lütfen numaranızı bırakınız.<br>
-	      	<small class="text-muted">*Lütfen gerekli alanları doldurunuz.</small>
-	      	<hr>
-
-	      	<?php include("formlar/talep-form.php"); ?>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	<!-- /Modal -->
 </div>
 
 <hr>
 
 <div class="container">
 	<div class="row">
+
 		<!-- Filtreler -->
 		<div class="col-md-4">
+
 			<h4><strong>Filtreler</strong></h4>
 			<div class="filters filter-section">
 				<div class="row search-box">
@@ -102,7 +84,7 @@ include("header.php");
 			    </div>
 			  </div>
 
-			  <!-- Sepet -->
+			  <!-- İlk Sepet Modal -->
 			  <div class="cart modal" v-show="showCart" id="checkout-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			    <div class="modal-dialog" role="document">
 				    <div class="modal-content">
@@ -122,34 +104,31 @@ include("header.php");
 						        </li>
 						        <li v-show="cargoSection === 1" transition="fade">
 						          <div class="sepet-elemani kargo-line" v-bind:class="[cargoClass]">
-						          	Kargo <i class="fa fa-truck" aria-hidden="true"></i> <span class="ucretsiz-text">*100TL Üzeri ücretsiz.</span>
+						          	Kargo <i class="fa fa-truck" aria-hidden="true"></i> <span class="ucretsiz-text">*<?php echo $kargoKampanyaUcreti; ?>TL Üzeri ücretsiz.</span>
 						          	<span class="sepet-eleman-fiyati"><strong>{{ cargoBasePrice }}</strong><i class="fa fa-try" aria-hidden="true"></i></span>
 						          </div>
 						        </li>
 						      </ul>
 
-						    	<!-- Son Sepet -->
-									<div class="" id="">
-										<div class="toplam-fiyat">
-											<h5>Toplam: <strong><span>{{ total }}</strong><i class="fa fa-try" aria-hidden="true"></i></span></strong></h5>
-										</div>
-
-									  <div class="form-group input-group {{ talepBtnWarning }}" >
-									    <span class="input-group-addon" id="basic-addon1" >Teslimat Nasıl Olacak?</span>
-									    <select class="form-control" id="exampleSelect1" v-model="cargoSection" >    	
-									      <option v-for="cargoOption in cargoOptions" v-bind:value="cargoOption.value" >
-									      	{{ cargoOption.text }}
-									      </option>
-									    </select>
-									  </div>
-
+									<div class="toplam-fiyat">
+										<h5>Toplam: <strong><span>{{ total }}</strong><i class="fa fa-try" aria-hidden="true"></i></span></strong></h5>
 									</div>
+
+								  <div class="form-group input-group {{ talepBtnWarning }}" >
+								    <span class="input-group-addon" id="basic-addon1" >Teslimat Nasıl Olacak?</span>
+								    <select class="form-control" id="exampleSelect1" v-model="cargoSection" >    	
+								      <option v-for="cargoOption in cargoOptions" v-bind:value="cargoOption.value" >
+								      	{{ cargoOption.text }}
+								      </option>
+								    </select>
+								  </div>
 						    </div>
 
 						    <div v-show="items.length === 0">
 						      <p>Sepetiniz boş!</p>
 						    </div>
 						  </div>
+
 						  <div class="modal-footer">
 				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Alışverişe Devam</button>
 				        <button type="button" class="btn btn-primary show-error" data-toggle="modal" data-target="{{ talepBtnModal }}"  type="button" v-show="items.length > 0" v-bind:class="talepBtnClass">Talep Et</button>
@@ -157,6 +136,7 @@ include("header.php");
 					  </div>
 					</div>
 				</div>
+				<!-- //İlk Sepet Modal -->
 
 			  <!-- Ürünler -->
 		    <div class="shop" v-show="!verified">
@@ -172,26 +152,99 @@ include("header.php");
 		        </li>
 		      </ul>
 		    </div>
+		    <!-- //Ürünler -->
+
+		    <!-- Son Sepet Modal -->
+			  <div class="cart modal bd-example-modal-lg" v-show="showCart" id="talepForm" tabindex="-1" role="dialog" aria-labelledby="talepFormLabel" aria-hidden="true">
+			    <div class="modal-dialog modal-lg">
+				    <div class="modal-content">
+							<div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h5 class="modal-title" id="talepFormLabel">Son Sepet</h5>
+				      </div>
+
+				      <div class="modal-body">
+      	      	Sizi aramamız için lütfen numaranızı bırakınız.<br>
+				      	<small class="text-muted">*Lütfen gerekli alanları doldurunuz.</small>
+    				  	<hr>
+
+					      <ul>
+					        <li v-for="item in items" transition="fade">
+					          <div class="sepet-elemani">
+					          	{{ item.name }} - <strong>{{ item.quantity }} Adet</strong>
+					          	<span class="sepet-eleman-fiyati"><strong>{{ item.price * item.quantity }}</strong><i class="fa fa-try" aria-hidden="true"></i></span>
+					          </div>
+					        </li>
+					        <li v-show="cargoSection === 1" transition="fade">
+					          <div class="sepet-elemani kargo-line" v-bind:class="[cargoClass]">
+					          	Kargo <i class="fa fa-truck" aria-hidden="true"></i> <span class="ucretsiz-text">*<?php echo $kargoKampanyaUcreti; ?>TL Üzeri ücretsiz.</span>
+					          	<span class="sepet-eleman-fiyati"><strong>{{ cargoBasePrice }}</strong><i class="fa fa-try" aria-hidden="true"></i></span>
+					          </div>
+					        </li>
+					      </ul>
+
+								<div class="toplam-fiyat">
+									<h5>Toplam: <strong><span>{{ total }}</strong><i class="fa fa-try" aria-hidden="true"></i></span></strong></h5>
+								</div>
+
+								<hr>
+
+<form name="hizli-form" id="hizli-form" action="formlar/form-php/form-to-mail-fast.php" method="post" onsubmit="return isFastVal(this)">
+
+  <div class="form-group">
+    <label for="exampleTextarea">Example textarea</label>
+    <textarea name="f_sepettekiler" id="f_sepettekiler" class="form-control" rows="3">{{ total }}
+    </textarea>
+  </div>
+  <div class="form-group">
+    <label for="realname">İsim & Soyisimiz*</label>
+    <input type="namesurname" name="f_realname" id="f_realname" class="form-control" placeholder="İsim & Soyisim">
+    <div id="f_name_hata" class="label label-warning">Lütfen İsim ve Soyisminizi giriniz.</div>
+  </div>
+  <div class="form-group">
+    <label for="phonenumber">Telefon Numaranız*</label>
+    <input type="phonenumber" name="f_telno" class="form-control" id="f_telno" placeholder="0xxxxxxxxxx">
+    <div id="f_tel_hata" class="label label-warning">Lütfen telefon numaranızı başında alan kodunuz ile birlikte 10 hane olarak giriniz</div>
+    <small class="text-muted">*Lütfen telefon numaranızı başında alan kodunuz ile birlikte 10 hane olarak giriniz</small>
+  </div>
+  <label for="aramaZamani">Ne Zaman Arayalım?</label>
+	<select class="form-control" name="f-aranma-zamani" id="f-aranma-zamani">
+	  <option value="">Zaman Seçiniz</option>
+	  <option value="1">En Kısa Sürede</option>
+	  <option value="2">Sabah</option>
+	  <option value="3">Öğle</option>
+	  <option value="4">Akşamüstü</option>
+	  <option value="5">Akşam</option>
+	</select>  
+	</br>
+						  </div>
+
+
+
+
+						  <div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Sepete Dön</button>
+	<button type="submit" class="btn btn-primary"  id="fast-f-btnGonder" name="submit" type="submit" value="Submit">Talebi Gönder</button>
+	<br>
+  
+	<div id="f-form-gonderiliyor" class="label label-success" style="display: none; font-size: 1rem;">Form Gönderiliyor<i class="fa fa-cog fa-spin fa-fw margin-bottom"></i></div>
+</form>
+				      </div>
+					  </div>
+					</div>
+				</div>
+				<!-- //Son Sepet Modal -->
 
 			</div>
 		</div>
+		<!-- //Ürünlerin Listelendiği Yer -->
+
 	</div>
 </div>
 
 
 
 
-
-
-
-
-<!-- section: slider -->
-<section id="slider">
-	<div class="container">
-		
-	</div>
-</section>
-<!-- /section: slider -->
 
 
 <?php

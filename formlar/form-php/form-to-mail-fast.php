@@ -23,7 +23,7 @@ $mail->AddAddress("melih@tatilsitesi.com"); // Mailin gönderileceği alıcı ad
 //$mail->AddCC('kaan@logocum.net');
 //$mail->AddCC('info@logocum.net');
 $mail->Subject = "Ruudo - Talep formu dolduruldu"; // Email konu başlığı
-$mail->Body = "<strong>$from</strong><br><br> <strong>Sepettekiler:</strong><br>$sepet<br> <strong>Telefon:</strong> $telef<br><strong>İsim:</strong> $name<br> <strong>Telefon:</strong> $telef<br> <strong>Aranmak istediği zaman:</strong> $aramaZamani<br> "; // Mailin içeriği
+$mail->Body = "<strong>$from</strong><br><br> <strong>Sepettekiler:</strong><br>$sepet<br> <strong>İsim:</strong> $name<br> <strong>Telefon:</strong> $telef<br> <strong>Aranmak istediği zaman:</strong> $aramaZamani<br> "; // Mailin içeriği
 
 if(!$mail->Send()){
 	//echo "Email Gönderim Hatasi: ".$mail->ErrorInfo;
