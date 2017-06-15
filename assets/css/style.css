@@ -158,6 +158,16 @@ body { font-family: sans-serif; }
   float: left;
 }
 
+/* --------------------------------------- */
+/* Form Styles */
+/* --------------------------------------- */
+#talepForm {
+  z-index: 1070
+}
+#f_name_hata,
+#f_tel_hata { display: none; }
+.datepicker { padding: 0; }
+.form-checkbox { display: inline-block; margin-right: 10px; }
 
 /* --------------------------------------- */
 /* Bootstrap Slider */
@@ -166,3 +176,43 @@ body { font-family: sans-serif; }
 .filters { margin-bottom: 20px; }
 .filters .btn-group>.btn { padding: 2px 5px; }
 .filters .btn-group { background-color: rgba(0, 0, 0, 0.1); border-radius: 5px; margin-bottom: 10px; }
+
+/* --------------------------------------- */
+/* Talep Disable Button */
+/* --------------------------------------- */
+.talep-fancy.talepwarning {
+  -webkit-animation: shake 500ms forwards ease-out;
+          animation: shake 500ms forwards ease-out;
+  border-color: #c74918;
+}
+.talep-fancy.talepwarning .form-control { border-color: #fd9a9a; }
+@keyframes shake {
+  0%, 100% {
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  }
+  25% {
+    -webkit-transform: translate(-5px, 0px);
+            transform: translate(-5px, 0px);
+  }
+  50% {
+    -webkit-transform: translate(5px, 0px);
+            transform: translate(5px, 0px);
+  }
+  75% {
+    -webkit-transform: translate(-5px, 0px);
+            transform: translate(-5px, 0px);
+  }
+  56% {
+    -webkit-transform: translate(5px, 0px);
+            transform: translate(5px, 0px);
+  }
+  70% {
+    -webkit-transform: translate(-5px, 0px);
+            transform: translate(-5px, 0px);
+  }
+  84% {
+    -webkit-transform: translate(5px, 0px);
+            transform: translate(5px, 0px);
+  }
+

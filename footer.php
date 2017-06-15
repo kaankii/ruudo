@@ -71,16 +71,20 @@ const vm = new Vue({
   data: {
     items: [],
     shop: shop,
-    kargoBasePrice: <?php echo $kargoUcreti; ?>,/* Kargo Ücreti*/
+    cargoBasePrice: <?php echo $kargoUcreti; ?>,/* Kargo Ücreti*/
+    cargoPromPrice: <?php echo $kargoKampanyaUcreti; ?>,/* Kargo Kampanya Ücreti*/
     cargoPrice: 0,
+    cargoSection: 0,
     cargoOptions: [
       { text: 'Seçiniz', value: 0 },
-      { text: 'Kargo ile', value: 10 },/* Kargo Ücreti*/
-      { text: 'Kapıdan', value: 0 }
+      { text: 'Kargo ile', value: 1 },
+      { text: 'Kapıdan', value: 2 }
     ],
     cargoClass: '',
-
+    talepDisabled: true,
     talepBtnClass: 'disabled',
+    talepBtnModal: '',
+    talepBtnWarning: 'talep-fancy',
     showCart: false,
     verified: false
   },
@@ -91,13 +95,25 @@ const vm = new Vue({
       for (var i = 0; i < this.items.length; i++) {
         total += this.items[i].price;
       } 
-
-      if ( total > 100 ) {
+      if ( this.cargoSection === 1 && total > this.cargoPromPrice ) {
         this.cargoPrice = 0;
         this.cargoClass = 'ucretsiz';
-      } else { 
-        total += parseInt( this.cargoPrice );
+      } else if ( this.cargoSection === 1 && total < this.cargoPromPrice ) {
+        this.cargoPrice =  this.cargoBasePrice;
         this.cargoClass = '';
+        total += parseInt( this.cargoPrice );
+      } else {
+        this.cargoPrice = 0;
+        total += parseInt( this.cargoPrice );
+      }
+      if ( this.cargoSection === 0 ) {
+        this.talepBtnClass = 'disabled';
+        this.talepBtnModal = '';
+        this.talepBtnWarning = 'talep-fancy';
+      } else {
+        this.talepBtnClass = '';
+        this.talepBtnModal = '#talepForm';
+        this.talepBtnWarning= '';
       }
       return total;
     }
@@ -110,7 +126,7 @@ const vm = new Vue({
     removeFromCart(item) {
       item.quantity -= 1;
       this.items.splice(this.items.indexOf(item), 1);
-      if ( this.total < 100 ) {
+      if ( this.total < this.cargoPromPrice ) {
         this.cargoPrice = this.cargoBasePrice;
         this.cargoClass = '';
         total += parseInt( this.cargoPrice );

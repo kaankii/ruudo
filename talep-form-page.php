@@ -28,7 +28,7 @@ include("header.php");
 		<div>Talep Formu</div>
 	</div>
 
-	<!-- Modal -->
+	<!-- Final Cart Modal -->
 	<div class="modal fade bd-example-modal-lg" id="talepForm" tabindex="-1" role="dialog" aria-labelledby="talepFormLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-lg">
 	    <div class="modal-content">
@@ -120,10 +120,10 @@ include("header.php");
 						          	<span class="sepet-eleman-fiyati"><strong>{{ item.price * item.quantity }}</strong><i class="fa fa-try" aria-hidden="true"></i></span>
 						          </div>
 						        </li>
-						        <li v-show="cargoPrice > 0" transition="fade">
+						        <li v-show="cargoSection === 1" transition="fade">
 						          <div class="sepet-elemani kargo-line" v-bind:class="[cargoClass]">
 						          	Kargo <i class="fa fa-truck" aria-hidden="true"></i> <span class="ucretsiz-text">*100TL Üzeri ücretsiz.</span>
-						          	<span class="sepet-eleman-fiyati"><strong>{{ cargoPrice }}</strong><i class="fa fa-try" aria-hidden="true"></i></span>
+						          	<span class="sepet-eleman-fiyati"><strong>{{ cargoBasePrice }}</strong><i class="fa fa-try" aria-hidden="true"></i></span>
 						          </div>
 						        </li>
 						      </ul>
@@ -134,25 +134,25 @@ include("header.php");
 											<h5>Toplam: <strong><span>{{ total }}</strong><i class="fa fa-try" aria-hidden="true"></i></span></strong></h5>
 										</div>
 
-									  <div class="form-group input-group">
-									    <span class="input-group-addon" id="basic-addon1">Teslimat Nasıl Olacak?</span>
-									    <select class="form-control" id="exampleSelect1" v-model="cargoPrice">    	
-									      <option v-for="cargoOption in cargoOptions" v-bind:value="cargoOption.value">
+									  <div class="form-group input-group {{ talepBtnWarning }}" >
+									    <span class="input-group-addon" id="basic-addon1" >Teslimat Nasıl Olacak?</span>
+									    <select class="form-control" id="exampleSelect1" v-model="cargoSection" >    	
+									      <option v-for="cargoOption in cargoOptions" v-bind:value="cargoOption.value" >
 									      	{{ cargoOption.text }}
 									      </option>
 									    </select>
 									  </div>
+
 									</div>
-					        
-						    
 						    </div>
+
 						    <div v-show="items.length === 0">
 						      <p>Sepetiniz boş!</p>
 						    </div>
 						  </div>
 						  <div class="modal-footer">
 				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Alışverişe Devam</button>
-				        <button type="button" class="btn btn-primary" type="button" v-show="items.length > 0" v-bind:class="[talepBtnClass]">Talep Et</button>
+				        <button type="button" class="btn btn-primary show-error" data-toggle="modal" data-target="{{ talepBtnModal }}"  type="button" v-show="items.length > 0" v-bind:class="talepBtnClass">Talep Et</button>
 				      </div>
 					  </div>
 					</div>
@@ -173,20 +173,7 @@ include("header.php");
 		      </ul>
 		    </div>
 
-		    
-		    <div class="checkout" v-show="verified">
-		      <h3>Your Cart</h3>
-		      <h5 v-for="item in items"><strong>{{ item.quantity }}</strong> - {{ item.name }}<span>${{ item.price * item.quantity }}</span></h5>
-		      <hr />
-		      <div class="row">
-		        <div class="u-pull-right">
-		          <h5>Total: <span>{{ total | currency }}</span></h5>
-		          <button>Looks Good</button> <button @click="verified = false, showCart = true">Kapat</button>
-		        </div>
-		      </div>
-		    </div>
 			</div>
-
 		</div>
 	</div>
 </div>

@@ -48,6 +48,7 @@ $(document).ready( function() {
 
 });
 
+
 // Flatten object by concatting values
 function concatValues( obj ) {
   var value = '';
@@ -55,4 +56,16 @@ function concatValues( obj ) {
     value += obj[ prop ];
   }
   return value;
-}
+};
+
+// Talep Button Uyarı
+$('.show-error').click(function(){
+  $('.talep-fancy').toggleClass('talepwarning');
+});
+
+// Telefon numarası maskesi
+jQuery(function($){
+  $("#f_telno").mask("09999999999?");
+  $("#mice_telno").mask("09999999999?");
+  $("#on_telno").mask("09999999999?");
+});

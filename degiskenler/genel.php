@@ -6,5 +6,9 @@ $phone_number1="(0) 530 461 85 53";
 $phone_number1="(0) 534 353 03 92";
 
 
+// Kargo -----------------------
 // Kargo ücreti
 $kargoUcreti=10;
+// Kargo kampanya ücreti
+$kargoKampanyaUcreti=100;
+
