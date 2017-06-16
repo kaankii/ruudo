@@ -1,9 +1,9 @@
 <?php
 
-$sepet = $_POST['f_sepettekiler'];
 $name = $_POST['f_realname'];
 $telef = $_POST['f_telno'];
-$aramaZamani = $_POST['f-aranma-zamani'];
+$sepet = $_POST['urun_sepettekiler'];
+$total = $_POST['f_totalprice'];
 
 require("class.phpmailer.php");
 $mail = new PHPMailer();
@@ -19,17 +19,17 @@ $mail->CharSet  ="utf-8";
 $mail->Username = "testmelih@yandex.com"; // Gönderici adresinizin sunucudaki kullanıcı adı (e-posta adresiniz)
 $mail->Password = "test9966"; // Mail adresimizin sifresi
 $mail->SetFrom("testmelih@yandex.com", "RUUDO"); // Mail atıldığında gorulecek isim ve email (genelde yukarıdaki username kullanılır)
-$mail->AddAddress("melih@tatilsitesi.com"); // Mailin gönderileceği alıcı adres
+$mail->AddAddress("melihsahinkesen@hotmail.com"); // Mailin gönderileceği alıcı adres
 //$mail->AddCC('kaan@logocum.net');
 //$mail->AddCC('info@logocum.net');
 $mail->Subject = "Ruudo - Talep formu dolduruldu"; // Email konu başlığı
-$mail->Body = "<strong>$from</strong><br><br> <strong>Sepettekiler:</strong><br>$sepet<br> <strong>İsim:</strong> $name<br> <strong>Telefon:</strong> $telef<br> <strong>Aranmak istediği zaman:</strong> $aramaZamani<br> "; // Mailin içeriği
+$mail->Body = "<strong>$from</strong><br><br> <strong>İsim:</strong> $name<br> <strong>Telefon:</strong> $telef<br> <strong>Toplam Ücret:</strong> $total TL<br><br> <strong>Sepettekiler:</strong><br>$sepet<br><br> "; // Mailin içeriği
 
 if(!$mail->Send()){
 	//echo "Email Gönderim Hatasi: ".$mail->ErrorInfo;
-	header('Location: ../form-gonderilemedi.php');
+	header('Location: ../../form-gonderilemedi.php');
 } else {
-	header('Location: ../form-gonderildi.php');
+	header('Location: ../../form-gonderildi.php');
 }
 
 ?>

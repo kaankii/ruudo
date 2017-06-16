@@ -12,7 +12,7 @@ include("header.php");
 <header class="jumbotron">
 	<div class="container">
 		<h1>
-			<span class="ruudo-icon icon-ruudo-logo-icon"></span>			
+			<span class="ruudo-icon icon-ruudo-logo-icon"></span>
 			Ruudo Ürünler Sayfası
 		</h1>
 		<p>Tüm ürünlerin getirileceği sayfanın code test bölgesi</p>
@@ -21,10 +21,8 @@ include("header.php");
 
 
 <div class="container" style="margin-bottom: 30px;">
-	<h2><strong>Talep Form Test</strong></h2>
-
-	<!-- Div trigger modal -->
-	<div type="button" class="btn btn-primary" data-toggle="modal" data-target="#talepForm">
+	<h4><strong>Talep Form Test Buttonu</strong></h4>
+	<div type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#talepForm">
 		<div>Talep Formu</div>
 	</div>
 </div>
@@ -79,7 +77,7 @@ include("header.php");
 			    <h4><strong>Ürünler</strong></h4>
 			    <div>
 			      <button @click="showCart = !showCart" v-show="!verified" data-toggle="modal" data-target="#checkout-Modal">
-			        {{ items.length + (items.length > 1 || items.length === 0 ? " items" : " item") }}
+			        {{ items.length + (items.length > 1 || items.length === 0 ? " ürünler" : " ürün") }}
 			      </button>
 			    </div>
 			  </div>
@@ -131,7 +129,7 @@ include("header.php");
 
 						  <div class="modal-footer">
 				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Alışverişe Devam</button>
-				        <button type="button" class="btn btn-primary show-error" data-toggle="modal" data-target="{{ talepBtnModal }}"  type="button" v-show="items.length > 0" v-bind:class="talepBtnClass">Talep Et</button>
+				        <button type="button" class="btn btn-primary show-error" data-toggle="modal" data-target="{{ talepBtnModal }}"  type="button" v-show="items.length > 0" v-bind:class="talepBtnClass" onclick="copyCartText()">Talep Et</button>
 				      </div>
 					  </div>
 					</div>
@@ -140,14 +138,14 @@ include("header.php");
 
 			  <!-- Ürünler -->
 		    <div class="shop" v-show="!verified">
-		      <ul class="grid">
+		      <ul class="urun-grid">
 		        <li v-for="item in shop" class="item {{ item.class }}">
 		          <div>
 		            <h5><strong>{{ item.name }}</strong></h5>
 		            <p>{{ item.oz }}</p>
 		            <strong>{{ item.price }}<i class="fa fa-try" aria-hidden="true"></i></strong>
 		            <br>
-		            <button @click="addToCart(item)">Add to cart</button>
+		            <button @click="addToCart(item)">Sepete Ekle</button>
 		          </div>
 		        </li>
 		      </ul>
@@ -160,13 +158,15 @@ include("header.php");
 				    <div class="modal-content">
 							<div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        <h5 class="modal-title" id="talepFormLabel">Son Sepet</h5>
+				        <h5 class="modal-title" id="talepFormLabel">Talep Formu - Son Sepet</h5>
 				      </div>
 
 				      <div class="modal-body">
-      	      	Sizi aramamız için lütfen numaranızı bırakınız.<br>
-				      	<small class="text-muted">*Lütfen gerekli alanları doldurunuz.</small>
-    				  	<hr>
+				      	<div v-show="cargoSection === 2">
+					      	<h5 style="color: #cc8500;"><i class="fa fa-archive" aria-hidden="true"></i> Sipariş Kapıdan Teslim Edilecektir.</h5>
+					      	<small class="text-muted">(!) Kargo ile almak için sepetteki seçiminizi değiştirin</small>
+	    				  	<hr>
+								</div>
 
 					      <ul>
 					        <li v-for="item in items" transition="fade">
@@ -183,40 +183,46 @@ include("header.php");
 					        </li>
 					      </ul>
 
+					 <!-- Form Textarea ya kopyalanan gizli div -->
+	   			<div id="sepet-kopya" style="display: none;">
+		        <li v-for="item in items">
+	          	{{ item.name }} - {{ item.quantity }} Adet / {{ item.price * item.quantity }} TL
+		        </li>
+		        <li v-show="cargoSection === 1" >
+		          	Kargo / {{ cargoPrice }} TL
+		        </li>
+		        <li v-show="cargoSection === 2" >
+		          	Kapıdan Teslim Alınacak
+		        </li>
+		      </div>
+
 								<div class="toplam-fiyat">
-									<h5>Toplam: <strong><span>{{ total }}</strong><i class="fa fa-try" aria-hidden="true"></i></span></strong></h5>
+									<h4>Toplam: <strong><span>{{ total }}</strong><i class="fa fa-try" aria-hidden="true"></i></span></strong></h4>
 								</div>
 
 								<hr>
 
-<form name="hizli-form" id="hizli-form" action="formlar/form-php/form-to-mail-fast.php" method="post" onsubmit="return isFastVal(this)">
+<form name="urun-talep-form" id="urun-talep-form" action="formlar/form-php/form_to_mail-urun_talep.php" method="post" onsubmit="return isFastVal(this)">
 
+  <div class="form-group" style="display: none;"> <!-- Gizlenen Input -->
+    <textarea name="urun_sepettekiler" id="urun_sepettekiler" class="form-control" ></textarea>
+  </div>
+	<input type="totalprice" name="f_totalprice" id="f_totalprice" value="{{ total }}" style="display: none;"><!-- Gizlenen Input -->
   <div class="form-group">
-    <label for="exampleTextarea">Example textarea</label>
-    <textarea name="f_sepettekiler" id="f_sepettekiler" class="form-control" rows="3">{{ total }}
-    </textarea>
+  	<div class="input-group">
+  		<span class="input-group-addon">İsim & Soyadınız</span>
+    	<input type="namesurname" name="f_realname" id="f_realname" class="form-control" placeholder="İsim & Soyisim">
+    </div>
+	  <div id="f_name_hata" class="label label-warning">Lütfen İsim ve Soyadınızı giriniz.</div>
   </div>
   <div class="form-group">
-    <label for="realname">İsim & Soyisimiz*</label>
-    <input type="namesurname" name="f_realname" id="f_realname" class="form-control" placeholder="İsim & Soyisim">
-    <div id="f_name_hata" class="label label-warning">Lütfen İsim ve Soyisminizi giriniz.</div>
+  	<div class="input-group">
+	  	<span class="input-group-addon">Telefon Numaranız</span>
+	    <input type="phonenumber" name="f_telno" class="form-control" id="f_telno" placeholder="0xxxxxxxxxx">
+	  </div>
+	  <div id="f_tel_hata" class="label label-warning">Lütfen telefon numaranızı başında alan kodunuz ile birlikte 10 hane olarak giriniz</div>
   </div>
-  <div class="form-group">
-    <label for="phonenumber">Telefon Numaranız*</label>
-    <input type="phonenumber" name="f_telno" class="form-control" id="f_telno" placeholder="0xxxxxxxxxx">
-    <div id="f_tel_hata" class="label label-warning">Lütfen telefon numaranızı başında alan kodunuz ile birlikte 10 hane olarak giriniz</div>
-    <small class="text-muted">*Lütfen telefon numaranızı başında alan kodunuz ile birlikte 10 hane olarak giriniz</small>
-  </div>
-  <label for="aramaZamani">Ne Zaman Arayalım?</label>
-	<select class="form-control" name="f-aranma-zamani" id="f-aranma-zamani">
-	  <option value="">Zaman Seçiniz</option>
-	  <option value="1">En Kısa Sürede</option>
-	  <option value="2">Sabah</option>
-	  <option value="3">Öğle</option>
-	  <option value="4">Akşamüstü</option>
-	  <option value="5">Akşam</option>
-	</select>  
-	</br>
+
 						  </div>
 
 

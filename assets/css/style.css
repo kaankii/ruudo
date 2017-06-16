@@ -139,11 +139,11 @@ body { font-family: sans-serif; }
 /* --------------------------------------- */
 /* Isotope Grid */
 /* --------------------------------------- */
-.grid {
+.urun-grid {
   max-width: 1200px;
 }
 /* clear fix */
-.grid:after {
+.urun-grid:after {
   content: '';
   display: block;
   clear: both;

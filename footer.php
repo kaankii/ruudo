@@ -50,12 +50,12 @@
 if ($page == "talep-form-page") {
   echo '
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
 
-	';
+  ';
 }
 ?>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
 <script type="text/javascript">
 const shop = [
 	<?php
@@ -136,8 +136,9 @@ const vm = new Vue({
   }
 });
 </script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
+
+
 <script src="assets/js/js.js"></script>
 
 

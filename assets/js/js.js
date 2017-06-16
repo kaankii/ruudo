@@ -9,7 +9,7 @@ $(document).ready( function() {
 
   // Initialise Isotope
   // Set the item selector
-  var $grid = $('.grid').isotope({
+  var $grid = $('.urun-grid').isotope({
     itemSelector: '.item',
     layout: 'masonry',
     // use filter function
@@ -66,6 +66,9 @@ $('.show-error').click(function(){
 // Telefon numarası maskesi
 jQuery(function($){
   $("#f_telno").mask("09999999999?");
-  $("#mice_telno").mask("09999999999?");
-  $("#on_telno").mask("09999999999?");
 });
+
+function copyCartText() {
+  var output = document.getElementById("sepet-kopya").innerHTML;
+  document.getElementById("urun_sepettekiler").value = output;
+}
