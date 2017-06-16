@@ -1,85 +1,5 @@
 body { font-family: 'Raleway', sans-serif; font-weight: 300; background-color: #cecece; }
-
-.jumbotron { background-color: #444; color: #fff; padding: 3rem 2rem; }
-.jumbotron .ruudo-icon { color: #f7a707; }
-.header h2 { font-weight: 900; color: #00adb5; margin-bottom: 20px; }
-.header button {
-  border: 0;
-  background: #f7a707;
-  transition: all .1s ease-out;
-  color: #fff;
-}
-.header button:hover {
-  background: #d28c00;
-}
-.header div {
-  margin-bottom: 10px;
-}
-
-li {
-  list-style: none;
-}
-
-.fa {
-  cursor: pointer;
-  margin-left: 5px;
-}
-
-.fade-transition {
-  transition: all 0.2s ease-out;
-}
-
-.fade-enter, .fade-leave {
-  opacity: 0;
-}
-
-.cart button {}
-.cart ul { padding: 0; }
-.sepet-eleman-fiyati { float: right; }
-.cart .toplam-fiyat { display: block; text-align: right; }
-.sepet-elemani.kargo-line { color: #cc8500; }
-.sepet-elemani .ucretsiz-text { display: none; }
-.sepet-elemani.ucretsiz { color: green; }
-.sepet-elemani.ucretsiz .ucretsiz-text { display: inline-block; font-size: 0.8rem;  }
-.sepet-elemani.ucretsiz .sepet-eleman-fiyati { text-decoration: line-through; }
-
-.shop ul { padding: 0; }
-.shop li div {
-  padding: 10px;
-  background: #fff;
-  margin-bottom: 3px;
-  box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.3);
-}
-.shop li div p { margin-bottom: 2px; }
-
-.shop button {
-  color: white;
-  border: 0;
-  background: #f7a707;
-  margin: 0;
-  transition: all .1s ease-out;
-}
-.shop button:hover {
-  background: #d28c00;
-}
-
-
-@media screen and (max-width: 630px) {
-  .checkout {
-    padding: 30px 40px;
-  }
-  .checkout h5 {
-    font-size: 1.2em;
-  }
-}
-@media screen and (max-width: 550px) {
-  .shop h3, .checkout h3 {
-    font-size: 3.3em;
-    top: -70px;
-    left: 0px;
-  }
-}
-
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {  font-family: 'Montserrat', sans-serif; }
 
 /* Ruudo Logo Font 
 ================================================== */
@@ -108,78 +28,91 @@ li {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.icon-ruudo-logo-icon:before { content: "\e900"; }
 
-.icon-ruudo-logo-icon:before {
-  content: "\e900";
-}
-
-
-
-/* Filtre Style 
+/* Demo Styles
 ================================================== */
-* {
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-}
-body { font-family: sans-serif; }
+.jumbotron { background-color: #444; color: #fff; padding: 3rem 2rem; }
+.jumbotron .ruudo-icon { color: #f7a707; }
+
+#talep-form-test-section { margin-bottom: 30px; }
+
+/* ÜRÜNLER SAYFASI 
+================================================== */
+
+/* Filtre Styles */
+#filter-section { margin-bottom: 20px; }
+#filter-section .btn { font-size: 12px; padding: 2px 5px; font-weight: 600; }
+#filter-section .btn:hover {}
+#filter-section .btn:active,
+#filter-section .btn.is-checked { background-color: #0275d8; color: #fff; }
+#filter-section .btn-group { background-color: rgba(0, 0, 0, 0.1); border-radius: 5px; margin-bottom: 10px; }
+#filter-section .fa { color: #1e619a; font-size: 0.8rem; }
+
+/* Isotope Grid */
+/* -clear fix */
+.urun-grid:after { content: ''; display: block; clear: both; }
+/* -isotope item */
+.item { width: 32%; margin-right: 1%; float: left; }
 
 
-.btn {
-  text-transform: uppercase;
-}
-.btn:hover {}
-.btn:active,
-.btn.is-checked {
-  background-color: #0275d8;
+/* Genel */
+#talep-form-page .header h2 { font-weight: 900; color: #00adb5; margin-bottom: 20px; }
+#talep-form-page .header button {
+  border: 0;
+  background: #f7a707;
+  transition: all .1s ease-out;
   color: #fff;
 }
-.btn-filter { font-size: 12px; }
+#talep-form-page .header button:hover { background: #d28c00; }
 
-/* --------------------------------------- */
-/* Isotope Grid */
-/* --------------------------------------- */
-.urun-grid {
-  max-width: 1200px;
-}
-/* clear fix */
-.urun-grid:after {
-  content: '';
-  display: block;
-  clear: both;
-}
+.sepet-btn-content { margin-bottom: 10px; }
+.shop ul li { list-style: none; }
+.sepet-elemani .fa { cursor: pointer; margin-left: 5px; }
 
-/* --------------------------------------- */
-/* Isotope item */
-/* --------------------------------------- */
-.item {
-  width: 32%;
-  margin-right: 1%;
-  float: left;
-}
+.fade-transition { transition: all 0.2s ease-out; }
+.fade-enter, .fade-leave { opacity: 0; }
 
-/* --------------------------------------- */
+.cart ul { padding: 0; }
+.cart ul li { list-style: none; }
+.cart .toplam-fiyat { display: block; text-align: right; }
+.sepet-eleman-fiyati { float: right; }
+.sepet-elemani .fa-trash { color: #a23f3f; }
+.sepet-elemani .fa-trash:hover { opacity: 0.8; }
+.sepet-elemani.kargo-line { color: #cc8500; }
+.sepet-elemani .ucretsiz-text { display: none; }
+.sepet-elemani.ucretsiz { color: green; }
+.sepet-elemani.ucretsiz .ucretsiz-text { display: inline-block; font-size: 0.8rem; }
+.sepet-elemani.ucretsiz .sepet-eleman-fiyati { text-decoration: line-through; }
+
+.shop ul { padding: 0; }
+.shop li div {
+  padding: 10px;
+  background: #fff;
+  margin-bottom: 3px;
+  box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.3);
+}
+.shop li div p { margin-bottom: 2px; }
+.shop button {
+  color: white;
+  border: 0;
+  background: #f7a707;
+  margin: 0;
+  transition: all .1s ease-out;
+}
+.shop button:hover { background: #d28c00; }
+
+
 /* Form Styles */
-/* --------------------------------------- */
-#talepForm {
-  z-index: 1070
-}
+#talepForm { z-index: 1070; }
 #f_name_hata,
 #f_tel_hata { display: none; }
+#fast-f-btnGonder.form-gonderiyor { background-color: #11a715; border-color: #259227; }
+
 .datepicker { padding: 0; }
 .form-checkbox { display: inline-block; margin-right: 10px; }
 
-/* --------------------------------------- */
-/* Bootstrap Slider */
-/* --------------------------------------- */
-.sliders { padding: 15px 0 30px 0; }
-.filters { margin-bottom: 20px; }
-.filters .btn-group>.btn { padding: 2px 5px; }
-.filters .btn-group { background-color: rgba(0, 0, 0, 0.1); border-radius: 5px; margin-bottom: 10px; }
-
-/* --------------------------------------- */
 /* Talep Disable Button */
-/* --------------------------------------- */
 .talep-fancy.talepwarning {
   -webkit-animation: shake 500ms forwards ease-out;
           animation: shake 500ms forwards ease-out;
@@ -215,4 +148,25 @@ body { font-family: sans-serif; }
     -webkit-transform: translate(5px, 0px);
             transform: translate(5px, 0px);
   }
+}
 
+/* SON KONTROL */
+@media screen and (max-width: 630px) {
+  .checkout { padding: 30px 40px; }
+  .checkout h5 { font-size: 1.2em; }
+}
+@media screen and (max-width: 550px) {
+  .shop h3, .checkout h3 { font-size: 3.3em; top: -70px; left: 0px; }
+}
+
+@media (max-width: 1199px) {}
+@media (max-width: 991px) {}
+@media (max-width: 767px) {}
+@media (max-width: 543px) {}
+
+/* #Browser Sellector Styles
+================================================== */ 
+.mobile .mobile-area {}
+.mobile .desktop-area {}
+.iphone #contact .main-modal-btn {}
+.iphone #contact .sec-modal-btn {}

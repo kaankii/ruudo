@@ -19,29 +19,28 @@ include("header.php");
   </div>
 </header>
 
-
-<div class="container" style="margin-bottom: 30px;">
-	<h4><strong>Talep Form Test Buttonu</strong></h4>
-	<div type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#talepForm">
-		<div>Talep Formu</div>
+<section id="talep-form-test-section">
+	<div class="container">
+		<h4><strong>Talep Form Test Buttonu</strong></h4>
+		<div type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#talepForm">
+			<div>Talep Formu</div>
+		</div>
 	</div>
-</div>
-
+</section>
 <hr>
 
-<div class="container">
+<section class="container">
 	<div class="row">
 
 		<!-- Filtreler -->
 		<div class="col-md-4">
-
 			<h4><strong>Filtreler</strong></h4>
-			<div class="filters filter-section">
+			<div id="filter-section" class="filters">
 				<div class="row search-box">
 					<div class="col-md-12">
 						<span class="filter-label"><strong><i class="fa fa-cutlery" aria-hidden="true"></i> Ürün:</strong></span><br>
 						<div class="btn-group" role="group" data-filter-group="color">
-							<span class="btn btn-sm btn-default btn-filter is-checked" data-filter="">Tümü</span>
+							<span class="btn btn-sm btn-default btn-filter is-checked" data-filter="">TÜMÜ</span>
 							<span class="btn btn-sm btn-default btn-filter" data-filter=".corek">ÇÖREKLER</span>
 							<span class="btn btn-sm btn-default btn-filter" data-filter=".kahve">KAHVELER</span>
 							<span class="btn btn-sm btn-default btn-filter" data-filter=".kek">KEKLER</span>
@@ -51,33 +50,31 @@ include("header.php");
 					<div class="col-md-12">
 						<span class="filter-label"><strong><i class="fa fa-check-square-o" aria-hidden="true"></i> Yeme Tercihi:</strong></span><br>
 						<div class="btn-group" role="group" data-filter-group="size">
-							<span class="btn btn-sm btn-default btn-filter is-checked" data-filter="">Tümü</span>
-							<span class="btn btn-sm btn-default btn-filter" data-filter=".glutensiz">Glutensiz</span>
-							<span class="btn btn-sm btn-default btn-filter" data-filter=".unsuz">Unsuz</span>
-							<span class="btn btn-sm btn-default btn-filter" data-filter=".sutsuz">Süt Ürünsüz</span>
+							<span class="btn btn-sm btn-default btn-filter is-checked" data-filter="">TÜMÜ</span>
+							<span class="btn btn-sm btn-default btn-filter" data-filter=".glutensiz">GLUTENSİZ</span>
+							<span class="btn btn-sm btn-default btn-filter" data-filter=".unsuz">UNSUZ</span>
+							<span class="btn btn-sm btn-default btn-filter" data-filter=".sutsuz">SÜT ÜRÜNSÜZ</span>
 						</div>
 					</div>
 					<div class="col-md-12">
 						<span class="filter-label"><strong><i class="fa fa-truck" aria-hidden="true"></i> Kargo:</strong></span><br>
 						<div class="btn-group" role="group" data-filter-group="shape">
-							<span class="btn btn-sm btn-default btn-filter is-checked" data-filter="">Tümü</span>
-							<span class="btn btn-sm btn-default btn-filter" data-filter=".kargo">Kargolanabilir</span>
+							<span class="btn btn-sm btn-default btn-filter is-checked" data-filter="">TÜMÜ</span>
+							<span class="btn btn-sm btn-default btn-filter" data-filter=".kargo">KARGOLANABİLİR</span>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 
 		<!-- Ürünlerin Listelendiği Yer -->
 		<div class="col-md-8">
 			<div id="app">
 			  <div class="header">
 			    <h4><strong>Ürünler</strong></h4>
-			    <div>
+			    <div class="sepet-btn-content">
 			      <button @click="showCart = !showCart" v-show="!verified" data-toggle="modal" data-target="#checkout-Modal">
-			        {{ items.length + (items.length > 1 || items.length === 0 ? " ürünler" : " ürün") }}
+			        <i class="fa fa-shopping-cart" aria-hidden="true"></i> {{ items.length + (items.length > 1 || items.length === 0 ? " ürünler" : " ürün") }} 
 			      </button>
 			    </div>
 			  </div>
@@ -88,7 +85,7 @@ include("header.php");
 				    <div class="modal-content">
 							<div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        <h5 class="modal-title" id="exampleModalLabel">Talep Sepeti</h5>
+				        <h5 class="modal-title" id="exampleModalLabel">Talep Sepeti <i class="fa fa-shopping-cart" aria-hidden="true"></i></h5>
 				      </div>
 
 				      <div class="modal-body">
@@ -158,7 +155,7 @@ include("header.php");
 				    <div class="modal-content">
 							<div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        <h5 class="modal-title" id="talepFormLabel">Talep Formu - Son Sepet</h5>
+				        <h5 class="modal-title" id="talepFormLabel">Talep Formu - Son Sepet <i class="fa fa-shopping-cart" aria-hidden="true"></i></h5>
 				      </div>
 
 				      <div class="modal-body">
@@ -183,18 +180,18 @@ include("header.php");
 					        </li>
 					      </ul>
 
-					 <!-- Form Textarea ya kopyalanan gizli div -->
-	   			<div id="sepet-kopya" style="display: none;">
-		        <li v-for="item in items">
-	          	{{ item.name }} - {{ item.quantity }} Adet / {{ item.price * item.quantity }} TL
-		        </li>
-		        <li v-show="cargoSection === 1" >
-		          	Kargo / {{ cargoPrice }} TL
-		        </li>
-		        <li v-show="cargoSection === 2" >
-		          	Kapıdan Teslim Alınacak
-		        </li>
-		      </div>
+								<!-- Form Textarea ya kopyalanan gizli div -->
+				   			<div id="sepet-kopya" style="display: none;">
+					        <li v-for="item in items">
+				          	{{ item.name }} - {{ item.quantity }} Adet / {{ item.price * item.quantity }} TL
+					        </li>
+					        <li v-show="cargoSection === 1" >
+					          	Kargo / {{ cargoPrice }} TL
+					        </li>
+					        <li v-show="cargoSection === 2" >
+					          	Kapıdan Teslim Alınacak
+					        </li>
+					      </div>
 
 								<div class="toplam-fiyat">
 									<h4>Toplam: <strong><span>{{ total }}</strong><i class="fa fa-try" aria-hidden="true"></i></span></strong></h4>
@@ -202,54 +199,47 @@ include("header.php");
 
 								<hr>
 
-<form name="urun-talep-form" id="urun-talep-form" action="formlar/form-php/form_to_mail-urun_talep.php" method="post" onsubmit="return isFastVal(this)">
+								<!-- Son Sepet Formu -->
+								<form name="urun-talep-form" id="urun-talep-form" action="formlar/form-php/form_to_mail-urun_talep.php" method="post" onsubmit="return isTalepVal(this)">
 
-  <div class="form-group" style="display: none;"> <!-- Gizlenen Input -->
-    <textarea name="urun_sepettekiler" id="urun_sepettekiler" class="form-control" ></textarea>
-  </div>
-	<input type="totalprice" name="f_totalprice" id="f_totalprice" value="{{ total }}" style="display: none;"><!-- Gizlenen Input -->
-  <div class="form-group">
-  	<div class="input-group">
-  		<span class="input-group-addon">İsim & Soyadınız</span>
-    	<input type="namesurname" name="f_realname" id="f_realname" class="form-control" placeholder="İsim & Soyisim">
-    </div>
-	  <div id="f_name_hata" class="label label-warning">Lütfen İsim ve Soyadınızı giriniz.</div>
-  </div>
-  <div class="form-group">
-  	<div class="input-group">
-	  	<span class="input-group-addon">Telefon Numaranız</span>
-	    <input type="phonenumber" name="f_telno" class="form-control" id="f_telno" placeholder="0xxxxxxxxxx">
-	  </div>
-	  <div id="f_tel_hata" class="label label-warning">Lütfen telefon numaranızı başında alan kodunuz ile birlikte 10 hane olarak giriniz</div>
-  </div>
+								  <div class="form-group" style="display: none;"> <!-- Gizlenen Input -->
+								    <textarea name="urun_sepettekiler" id="urun_sepettekiler" class="form-control" ></textarea>
+								  </div>
+									<input type="totalprice" name="f_totalprice" id="f_totalprice" value="{{ total }}" style="display: none;"><!-- Gizlenen Input -->
+								  <div class="form-group">
+								  	<div class="input-group">
+								  		<span class="input-group-addon">İsim & Soyadınız</span>
+								    	<input type="namesurname" name="f_realname" id="f_realname" class="form-control" placeholder="İsim & Soyisim">
+								    </div>
+									  <div id="f_name_hata" class="label label-warning">Lütfen İsim ve Soyadınızı giriniz.</div>
+								  </div>
+								  <div class="form-group">
+								  	<div class="input-group">
+									  	<span class="input-group-addon">Telefon Numaranız</span>
+									    <input type="phonenumber" name="f_telno" class="form-control" id="f_telno" placeholder="0xxxxxxxxxx">
+									  </div>
+									  <div id="f_tel_hata" class="label label-warning">Lütfen telefon numaranızı başında alan kodunuz ile birlikte 10 hane olarak giriniz</div>
+								  </div>
 
 						  </div>
 
-
-
-
 						  <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Sepete Dön</button>
-	<button type="submit" class="btn btn-primary"  id="fast-f-btnGonder" name="submit" type="submit" value="Submit">Talebi Gönder</button>
-	<br>
-  
-	<div id="f-form-gonderiliyor" class="label label-success" style="display: none; font-size: 1rem;">Form Gönderiliyor<i class="fa fa-cog fa-spin fa-fw margin-bottom"></i></div>
-</form>
+								  <button type="button" id="sepete-don-son-btn" class="btn btn-secondary" data-dismiss="modal">Sepete Dön</button>
+									<button type="submit" id="fast-f-btnGonder" class="btn btn-primary"  name="submit" type="submit" value="Submit" transition="fade">Talebi Gönder</button>
+									<br>
+								  
+								</form>
+								<!-- //Son Sepet Formu -->
 				      </div>
 					  </div>
 					</div>
 				</div>
 				<!-- //Son Sepet Modal -->
-
 			</div>
 		</div>
 		<!-- //Ürünlerin Listelendiği Yer -->
-
 	</div>
-</div>
-
-
-
+</section>
 
 
 

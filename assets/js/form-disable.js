@@ -1,5 +1,5 @@
 
-function isFastVal(frm)
+function isTalepVal(frm)
 {
   var fast_realname = frm.f_realname.value;
   var fast_telno = frm.f_telno.value;
@@ -23,8 +23,10 @@ function isFastVal(frm)
     document.getElementById('f_name_hata').style.display = 'none'; 
     document.getElementById('f_tel_hata').style.display = 'none'; 
 
-    document.getElementById('fast-f-btnGonder').style.display = 'none';
-    document.getElementById('f-form-gonderiliyor').style.display = 'inline-block';
+    document.getElementById('sepete-don-son-btn').disabled = true;
+    document.getElementById('fast-f-btnGonder').disabled = true;
+    document.getElementById('fast-f-btnGonder').classList.add('form-gonderiyor');
+    document.getElementById('fast-f-btnGonder').innerHTML = 'Talep Gönderiliyor <i class="fa fa-cog fa-spin" aria-hidden="true"></i>';
   };
   return true;
 }
