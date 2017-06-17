@@ -74,7 +74,7 @@ include("header.php");
 			    <h4><strong>Ürünler</strong></h4>
 			    <div class="sepet-btn-content">
 			      <button @click="showCart = !showCart" v-show="!verified" data-toggle="modal" data-target="#checkout-Modal">
-			        <i class="fa fa-shopping-cart" aria-hidden="true"></i> {{ items.length + (items.length > 1 || items.length === 0 ? " ürünler" : " ürün") }} 
+			        <i class="fa fa-shopping-cart" aria-hidden="true"></i> {{ items.length + (items.length > 1 || items.length === 0 ? " ürün" : " ürün") }} 
 			      </button>
 			    </div>
 			  </div>
@@ -142,7 +142,7 @@ include("header.php");
 		            <p>{{ item.oz }}</p>
 		            <strong>{{ item.price }}<i class="fa fa-try" aria-hidden="true"></i></strong>
 		            <br>
-		            <button @click="addToCart(item)">Sepete Ekle</button>
+		            <button class="sepete-ekle-btn" @click="addToCart(item)">Sepete Ekle</button>
 		          </div>
 		        </li>
 		      </ul>
@@ -220,7 +220,13 @@ include("header.php");
 									  </div>
 									  <div id="f_tel_hata" class="label label-warning">Lütfen telefon numaranızı başında alan kodunuz ile birlikte 10 hane olarak giriniz</div>
 								  </div>
-
+								  <div class="form-check">
+								    <label class="form-check-label">
+								      <input type="checkbox" class="form-check-input" id="note-checkbox" v-model="checked">
+								      <i class="fa fa-star-half-o" aria-hidden="true"></i> Eklemek istediğiniz notunuz?
+								    </label>
+								    <textarea class="form-control" id="noteTextarea" rows="3" v-show=" checkbox = checked "></textarea>
+								  </div>
 						  </div>
 
 						  <div class="modal-footer">
@@ -241,6 +247,88 @@ include("header.php");
 	</div>
 </section>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
+<script type="text/javascript">
+const shop = [
+	<?php
+		foreach (glob("degiskenler/urunler/*.php") as $filename)
+		{
+	    include $filename;
+		}
+	?>
+];
+
+const vm = new Vue({
+  el: "#app",
+  data: {
+    items: [],
+    shop: shop,
+    cargoBasePrice: <?php echo $kargoUcreti; ?>,/* Kargo Ücreti*/
+    cargoPromPrice: <?php echo $kargoKampanyaUcreti; ?>,/* Kargo Kampanya Ücreti*/
+    cargoPrice: 0,
+    cargoSection: 0,
+    cargoOptions: [
+      { text: 'Seçiniz', value: 0 },
+      { text: 'Kargo ile', value: 1 },
+      { text: 'Kapıdan', value: 2 }
+    ],
+    cargoClass: '',
+    talepDisabled: true,
+    talepBtnClass: 'disabled',
+    talepBtnModal: '',
+    talepBtnWarning: 'talep-fancy',
+    showCart: false,
+    verified: false
+  },
+  computed: {
+    total() {
+      var total = 0;
+      
+      for (var i = 0; i < this.items.length; i++) {
+        total += this.items[i].price;
+      } 
+      if ( this.cargoSection === 1 && total > this.cargoPromPrice ) {
+        this.cargoPrice = 0;
+        this.cargoClass = 'ucretsiz';
+      } else if ( this.cargoSection === 1 && total < this.cargoPromPrice ) {
+        this.cargoPrice =  this.cargoBasePrice;
+        this.cargoClass = '';
+        total += parseInt( this.cargoPrice );
+      } else {
+        this.cargoPrice = 0;
+        total += parseInt( this.cargoPrice );
+      }
+      if ( this.cargoSection === 0 ) {
+        this.talepBtnClass = 'disabled';
+        this.talepBtnModal = '';
+        this.talepBtnWarning = 'talep-fancy';
+      } else {
+        this.talepBtnClass = '';
+        this.talepBtnModal = '#talepForm';
+        this.talepBtnWarning= '';
+      }
+      return total;
+    }
+  },
+  methods: {
+    addToCart(item) {
+      item.quantity += 1;
+      this.items.push(item);
+    },
+    removeFromCart(item) {
+      item.quantity -= 1;
+      this.items.splice(this.items.indexOf(item), 1);
+      if ( this.total < this.cargoPromPrice ) {
+        this.cargoPrice = this.cargoBasePrice;
+        this.cargoClass = '';
+        total += parseInt( this.cargoPrice );
+      }
+      return this.total;
+    },
+  }
+});
+</script>
 
 
 <?php

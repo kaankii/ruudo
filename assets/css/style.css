@@ -69,6 +69,8 @@ body { font-family: 'Raleway', sans-serif; font-weight: 300; background-color: #
 .sepet-btn-content { margin-bottom: 10px; }
 .shop ul li { list-style: none; }
 .sepet-elemani .fa { cursor: pointer; margin-left: 5px; }
+.shop .sepete-ekle-btn { display: none; }
+.shop .kargo .sepete-ekle-btn { display: inline-block; }
 
 .fade-transition { transition: all 0.2s ease-out; }
 .fade-enter, .fade-leave { opacity: 0; }

@@ -11,12 +11,26 @@
 <!-- /footer -->
 
 <!-- jQuery first, then JS. -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<?php
+if ($page !== "talep-form-page") {
+  echo '
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  ';
+}
+?>
 <script src="assets/js/tether.min.js"></script><!-- Tether for Bootstrap -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
 <script src="assets/js/css_browser_selector.js"></script>
 <script src="assets/js/form-disable.js"></script>
 <script src="assets/js/masked_input_plugin.js"></script>
+<?php
+if ($page == "talep-form-page") {
+  echo '
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
+    <script src="assets/js/filtre-grid.js"></script>
+  ';
+}
+?>
 
 <!-- SON KONTROL - ZOPIM EKLE
 <script async="" charset="utf-8" src="https://v2.zopim.com/?4ntMHmXHdRE5M0zZ7db4mvn0opUsgDKx" type="text/javascript"></script>
@@ -45,99 +59,6 @@
   ga('create', 'UA-99002428-1', 'auto');
   ga('send', 'pageview');
 </script>
-
-<?php
-if ($page == "talep-form-page") {
-  echo '
-
-
-  ';
-}
-?>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
-<script type="text/javascript">
-const shop = [
-	<?php
-		foreach (glob("degiskenler/urunler/*.php") as $filename)
-		{
-	    include $filename;
-		}
-	?>
-];
-
-const vm = new Vue({
-  el: "#app",
-  data: {
-    items: [],
-    shop: shop,
-    cargoBasePrice: <?php echo $kargoUcreti; ?>,/* Kargo Ücreti*/
-    cargoPromPrice: <?php echo $kargoKampanyaUcreti; ?>,/* Kargo Kampanya Ücreti*/
-    cargoPrice: 0,
-    cargoSection: 0,
-    cargoOptions: [
-      { text: 'Seçiniz', value: 0 },
-      { text: 'Kargo ile', value: 1 },
-      { text: 'Kapıdan', value: 2 }
-    ],
-    cargoClass: '',
-    talepDisabled: true,
-    talepBtnClass: 'disabled',
-    talepBtnModal: '',
-    talepBtnWarning: 'talep-fancy',
-    showCart: false,
-    verified: false
-  },
-  computed: {
-    total() {
-      var total = 0;
-      
-      for (var i = 0; i < this.items.length; i++) {
-        total += this.items[i].price;
-      } 
-      if ( this.cargoSection === 1 && total > this.cargoPromPrice ) {
-        this.cargoPrice = 0;
-        this.cargoClass = 'ucretsiz';
-      } else if ( this.cargoSection === 1 && total < this.cargoPromPrice ) {
-        this.cargoPrice =  this.cargoBasePrice;
-        this.cargoClass = '';
-        total += parseInt( this.cargoPrice );
-      } else {
-        this.cargoPrice = 0;
-        total += parseInt( this.cargoPrice );
-      }
-      if ( this.cargoSection === 0 ) {
-        this.talepBtnClass = 'disabled';
-        this.talepBtnModal = '';
-        this.talepBtnWarning = 'talep-fancy';
-      } else {
-        this.talepBtnClass = '';
-        this.talepBtnModal = '#talepForm';
-        this.talepBtnWarning= '';
-      }
-      return total;
-    }
-  },
-  methods: {
-    addToCart(item) {
-      item.quantity += 1;
-      this.items.push(item);
-    },
-    removeFromCart(item) {
-      item.quantity -= 1;
-      this.items.splice(this.items.indexOf(item), 1);
-      if ( this.total < this.cargoPromPrice ) {
-        this.cargoPrice = this.cargoBasePrice;
-        this.cargoClass = '';
-        total += parseInt( this.cargoPrice );
-      }
-      return this.total;
-    },
-  }
-});
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
-
 
 <script src="assets/js/js.js"></script>
 
