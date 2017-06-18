@@ -4,6 +4,7 @@ $name = $_POST['f_realname'];
 $telef = $_POST['f_telno'];
 $sepet = $_POST['urun_sepettekiler'];
 $total = $_POST['f_totalprice'];
+$note = $_POST['f_talepnote'];
 
 require("class.phpmailer.php");
 $mail = new PHPMailer();
@@ -23,7 +24,7 @@ $mail->AddAddress("melihsahinkesen@hotmail.com"); // Mailin gönderileceği alı
 //$mail->AddCC('kaan@logocum.net');
 //$mail->AddCC('info@logocum.net');
 $mail->Subject = "Ruudo - Talep formu dolduruldu"; // Email konu başlığı
-$mail->Body = "<strong>$from</strong><br><br> <strong>İsim:</strong> $name<br> <strong>Telefon:</strong> $telef<br> <strong>Toplam Ücret:</strong> $total TL<br><br> <strong>Sepettekiler:</strong><br>$sepet<br><br> "; // Mailin içeriği
+$mail->Body = "<strong>$from</strong><br><br> <strong>İsim:</strong> $name<br> <strong>Telefon:</strong> $telef<br> <strong>Toplam Ücret:</strong> $total TL<br> <strong>Müşteri Notu:</strong> $note<br><br> <strong>Sepettekiler:</strong><br>$sepet<br><br> "; // Mailin içeriği
 
 if(!$mail->Send()){
 	//echo "Email Gönderim Hatasi: ".$mail->ErrorInfo;

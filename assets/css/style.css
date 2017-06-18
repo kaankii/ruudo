@@ -1,6 +1,8 @@
 body { font-family: 'Raleway', sans-serif; font-weight: 300; background-color: #cecece; }
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {  font-family: 'Montserrat', sans-serif; }
 
+button, input, optgroup, select, textarea { font-family: 'Raleway', sans-serif; }
+
 /* Ruudo Logo Font 
 ================================================== */
 @font-face {
@@ -43,8 +45,13 @@ body { font-family: 'Raleway', sans-serif; font-weight: 300; background-color: #
 /* Filtre Styles */
 #filter-section { margin-bottom: 20px; }
 #filter-section .btn { font-size: 12px; padding: 2px 5px; font-weight: 600; }
-#filter-section .btn:hover {}
+#filter-section .btn+.btn { margin-left: 0; }
+#filter-section .btn:hover, 
 #filter-section .btn:active,
+#filter-section .btn:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 #filter-section .btn.is-checked { background-color: #0275d8; color: #fff; }
 #filter-section .btn-group { background-color: rgba(0, 0, 0, 0.1); border-radius: 5px; margin-bottom: 10px; }
 #filter-section .fa { color: #1e619a; font-size: 0.8rem; }
@@ -53,7 +60,7 @@ body { font-family: 'Raleway', sans-serif; font-weight: 300; background-color: #
 /* -clear fix */
 .urun-grid:after { content: ''; display: block; clear: both; }
 /* -isotope item */
-.item { width: 32%; margin-right: 1%; float: left; }
+.item { width: 49%; margin-right: 1%; float: left; }
 
 
 /* Genel */
@@ -68,7 +75,6 @@ body { font-family: 'Raleway', sans-serif; font-weight: 300; background-color: #
 
 .sepet-btn-content { margin-bottom: 10px; }
 .shop ul li { list-style: none; }
-.sepet-elemani .fa { cursor: pointer; margin-left: 5px; }
 .shop .sepete-ekle-btn { display: none; }
 .shop .kargo .sepete-ekle-btn { display: inline-block; }
 
@@ -79,33 +85,48 @@ body { font-family: 'Raleway', sans-serif; font-weight: 300; background-color: #
 .cart ul li { list-style: none; }
 .cart .toplam-fiyat { display: block; text-align: right; }
 .sepet-eleman-fiyati { float: right; }
-.sepet-elemani .fa-trash { color: #a23f3f; }
+.sepet-elemani .fa-trash { color: #a23f3f; cursor: pointer; }
 .sepet-elemani .fa-trash:hover { opacity: 0.8; }
 .sepet-elemani.kargo-line { color: #cc8500; }
 .sepet-elemani .ucretsiz-text { display: none; }
 .sepet-elemani.ucretsiz { color: green; }
 .sepet-elemani.ucretsiz .ucretsiz-text { display: inline-block; font-size: 0.8rem; }
 .sepet-elemani.ucretsiz .sepet-eleman-fiyati { text-decoration: line-through; }
+.sepet-elemani .secili-ozellik { font-size: 65%; }
 
 .shop ul { padding: 0; }
-.shop li div {
+.shop li>div {
   padding: 10px;
   background: #fff;
   margin-bottom: 3px;
   box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.3);
 }
 .shop li div p { margin-bottom: 2px; }
-.shop button {
+.shop .sepete-ekle-btn {
   color: white;
   border: 0;
   background: #f7a707;
   margin: 0;
   transition: all .1s ease-out;
 }
-.shop button:hover { background: #d28c00; }
+.shop .sepete-ekle-btn:hover { background: #d28c00; }
+
+/* Popover-extra / Ürün özelleştirme için eklendi */
+.popover_parent { position: relative; display: inline-block; }
+.popover-extra { display: none; background: #F4F4F4; padding: 10px; border-radius: 4px; position: absolute; top: 30px; z-index: 1; width: 200px; 
+  border: 1px solid rgba(0, 0, 0, 0.05); box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.3); }
+.popover:before { content: ""; position: absolute; left: 30px; top: -20px; width: 0; height: 0; border: 10px solid transparent; border-bottom: 10px solid #F4F4F4; }
+
+.active .popover-extra { display: block; }
+.active a { background: #4ba9c5!important; color: #fff; }
+
+
+
+
 
 
 /* Form Styles */
+#talep-form-page form .note-label i { color: #cc8500; }
 #talepForm { z-index: 1070; }
 #f_name_hata,
 #f_tel_hata { display: none; }

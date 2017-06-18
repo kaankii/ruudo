@@ -22,9 +22,7 @@ include("header.php");
 <section id="talep-form-test-section">
 	<div class="container">
 		<h4><strong>Talep Form Test Buttonu</strong></h4>
-		<div type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#talepForm">
-			<div>Talep Formu</div>
-		</div>
+		<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#talepForm">Talep Formu</button>
 	</div>
 </section>
 <hr>
@@ -39,28 +37,30 @@ include("header.php");
 				<div class="row search-box">
 					<div class="col-md-12">
 						<span class="filter-label"><strong><i class="fa fa-cutlery" aria-hidden="true"></i> Ürün:</strong></span><br>
-						<div class="btn-group" role="group" data-filter-group="color">
-							<span class="btn btn-sm btn-default btn-filter is-checked" data-filter="">TÜMÜ</span>
-							<span class="btn btn-sm btn-default btn-filter" data-filter=".corek">ÇÖREKLER</span>
-							<span class="btn btn-sm btn-default btn-filter" data-filter=".kahve">KAHVELER</span>
-							<span class="btn btn-sm btn-default btn-filter" data-filter=".kek">KEKLER</span>
-							<span class="btn btn-sm btn-default btn-filter" data-filter=".muffin">MUFFİNLER</span>
+						<div class="btn-toolbar" role="toolbar" aria-label="Yiyecek türleri filtresi">
+							<div class="btn-group" role="group" data-filter-group="yeme-fitre">
+								<button type="button" class="btn btn-sm btn-default btn-filter is-checked" data-filter="">TÜMÜ</button>
+								<button type="button" class="btn btn-sm btn-default btn-filter" data-filter=".corek">ÇÖREKLER</button>
+								<button type="button" class="btn btn-sm btn-default btn-filter" data-filter=".kahve">KAHVELER</button>
+								<button type="button" class="btn btn-sm btn-default btn-filter" data-filter=".kek">KEKLER</button>
+								<button type="button" class="btn btn-sm btn-default btn-filter" data-filter=".muffin">MUFFİNLER</button>
+							</div>
 						</div>
 					</div>
 					<div class="col-md-12">
 						<span class="filter-label"><strong><i class="fa fa-check-square-o" aria-hidden="true"></i> Yeme Tercihi:</strong></span><br>
-						<div class="btn-group" role="group" data-filter-group="size">
-							<span class="btn btn-sm btn-default btn-filter is-checked" data-filter="">TÜMÜ</span>
-							<span class="btn btn-sm btn-default btn-filter" data-filter=".glutensiz">GLUTENSİZ</span>
-							<span class="btn btn-sm btn-default btn-filter" data-filter=".unsuz">UNSUZ</span>
-							<span class="btn btn-sm btn-default btn-filter" data-filter=".sutsuz">SÜT ÜRÜNSÜZ</span>
+						<div class="btn-group" role="group" data-filter-group="yeme-tercih-filtre">
+							<button type="button" class="btn btn-sm btn-default btn-filter is-checked" data-filter="">TÜMÜ</button>
+							<button type="button" class="btn btn-sm btn-default btn-filter" data-filter=".glutensiz">GLUTENSİZ</button>
+							<button type="button" class="btn btn-sm btn-default btn-filter" data-filter=".unsuz">UNSUZ</button>
+							<button type="button" class="btn btn-sm btn-default btn-filter" data-filter=".sutsuz">SÜT ÜRÜNSÜZ</button>
 						</div>
 					</div>
 					<div class="col-md-12">
 						<span class="filter-label"><strong><i class="fa fa-truck" aria-hidden="true"></i> Kargo:</strong></span><br>
-						<div class="btn-group" role="group" data-filter-group="shape">
-							<span class="btn btn-sm btn-default btn-filter is-checked" data-filter="">TÜMÜ</span>
-							<span class="btn btn-sm btn-default btn-filter" data-filter=".kargo">KARGOLANABİLİR</span>
+						<div class="btn-group" role="group" data-filter-group="kargo-filtre">
+							<button type="button" class="btn btn-sm btn-default btn-filter is-checked" data-filter="">TÜMÜ</button>
+							<button type="button" class="btn btn-sm btn-default btn-filter" data-filter=".kargo">KARGOLANABİLİR</button>
 						</div>
 					</div>
 				</div>
@@ -73,8 +73,8 @@ include("header.php");
 			  <div class="header">
 			    <h4><strong>Ürünler</strong></h4>
 			    <div class="sepet-btn-content">
-			      <button @click="showCart = !showCart" v-show="!verified" data-toggle="modal" data-target="#checkout-Modal">
-			        <i class="fa fa-shopping-cart" aria-hidden="true"></i> {{ items.length + (items.length > 1 || items.length === 0 ? " ürün" : " ürün") }} 
+			      <button class="btn btn-secondary" @click="showCart = !showCart" v-show="!verified" data-toggle="modal" data-target="#checkout-Modal">
+			        <i class="fa fa-shopping-cart" aria-hidden="true"></i> {{ items.length + (items.length > 1 || items.length === 0 ? " Ürün" : " Ürün") }} 
 			      </button>
 			    </div>
 			  </div>
@@ -84,8 +84,8 @@ include("header.php");
 			    <div class="modal-dialog" role="document">
 				    <div class="modal-content">
 							<div class="modal-header">
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				        <h5 class="modal-title" id="exampleModalLabel">Talep Sepeti <i class="fa fa-shopping-cart" aria-hidden="true"></i></h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				      </div>
 
 				      <div class="modal-body">
@@ -93,7 +93,7 @@ include("header.php");
 						      <ul>
 						        <li v-for="item in items" transition="fade">
 						          <div class="sepet-elemani">
-						          	{{ item.name }} - <strong>{{ item.quantity }} Adet</strong><i class="fa fa-trash" @click="removeFromCart(item)"></i>
+						          	{{ item.name }} - <strong>{{ item.quantity }} Adet</strong> <i class="fa fa-trash" @click="removeFromCart(item)"></i>  <span class="secili-ozellik badge badge-info" v-show="item.checkedNames.length > 0"><i class="fa fa-star-half-o" aria-hidden="true"></i> {{ item.checkedNames }}</span>
 						          	<span class="sepet-eleman-fiyati"><strong>{{ item.price * item.quantity }}</strong><i class="fa fa-try" aria-hidden="true"></i></span>
 						          </div>
 						        </li>
@@ -140,9 +140,25 @@ include("header.php");
 		          <div>
 		            <h5><strong>{{ item.name }}</strong></h5>
 		            <p>{{ item.oz }}</p>
-		            <strong>{{ item.price }}<i class="fa fa-try" aria-hidden="true"></i></strong>
+		            <strong>{{ item.price }}<i class="fa fa-try" aria-hidden="true"></i></strong> <span class="badge badge-info" v-show="item.checkedNames.length > 0" style="font-size: 60%;"> <i class="fa fa-star-half-o" aria-hidden="true"></i> {{ item.checkedNames }}</span>
 		            <br>
-		            <button class="sepete-ekle-btn" @click="addToCart(item)">Sepete Ekle</button>
+		            <button class="sepete-ekle-btn btn btn-sm" @click="addToCart(item)">Sepete Ekle</button>
+
+  <div class="popover_parent" v-show="item.ozellestirOptions != ''">
+  <a href="javascript:void(0)" class="btn btn-outline-info btn-sm" role="button"><i class="fa fa-star-half-o" aria-hidden="true"></i> Özelleştir</a>
+		<fieldset class="popover-extra search">
+			<ul>
+	    	<li v-for="ozellestir in item.ozellestirOptions">
+		    	<label class="form-check-label">
+			    	<input type="checkbox" value="{{ ozellestir.text }}" v-model="item.checkedNames">
+			    	{{ ozellestir.text }}
+		    	</label>
+	    	</li>
+	  	</ul>
+  	</fieldset>
+  </div>		            
+
+
 		          </div>
 		        </li>
 		      </ul>
@@ -154,8 +170,8 @@ include("header.php");
 			    <div class="modal-dialog modal-lg">
 				    <div class="modal-content">
 							<div class="modal-header">
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				        <h5 class="modal-title" id="talepFormLabel">Talep Formu - Son Sepet <i class="fa fa-shopping-cart" aria-hidden="true"></i></h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				      </div>
 
 				      <div class="modal-body">
@@ -168,7 +184,7 @@ include("header.php");
 					      <ul>
 					        <li v-for="item in items" transition="fade">
 					          <div class="sepet-elemani">
-					          	{{ item.name }} - <strong>{{ item.quantity }} Adet</strong>
+					          	{{ item.name }} - <strong>{{ item.quantity }} Adet</strong> <span class="secili-ozellik badge badge-info" v-show="item.checkedNames.length > 0"><i class="fa fa-star-half-o" aria-hidden="true"></i> {{ item.checkedNames }}</span>
 					          	<span class="sepet-eleman-fiyati"><strong>{{ item.price * item.quantity }}</strong><i class="fa fa-try" aria-hidden="true"></i></span>
 					          </div>
 					        </li>
@@ -183,7 +199,7 @@ include("header.php");
 								<!-- Form Textarea ya kopyalanan gizli div -->
 				   			<div id="sepet-kopya" style="display: none;">
 					        <li v-for="item in items">
-				          	{{ item.name }} - {{ item.quantity }} Adet / {{ item.price * item.quantity }} TL
+				          	{{ item.name }} - {{ item.quantity }} Adet / {{ item.checkedNames }} / {{ item.price * item.quantity }} TL
 					        </li>
 					        <li v-show="cargoSection === 1" >
 					          	Kargo / {{ cargoPrice }} TL
@@ -207,25 +223,27 @@ include("header.php");
 								  </div>
 									<input type="totalprice" name="f_totalprice" id="f_totalprice" value="{{ total }}" style="display: none;"><!-- Gizlenen Input -->
 								  <div class="form-group">
+									  <div class="form-check">
+									    <label class="form-check-label note-label">
+									      <input type="checkbox" class="form-check-input" id="note-checkbox" v-model="checked">
+									      <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Eklemek istediğiniz notunuz?
+									    </label>
+									    <textarea class="form-control" id="f_talepnote" rows="3" v-show=" checkbox = checked " type="note" name="f_talepnote"></textarea>
+									  </div>
+								  </div>
+								  <div class="form-group">
 								  	<div class="input-group">
 								  		<span class="input-group-addon">İsim & Soyadınız</span>
 								    	<input type="namesurname" name="f_realname" id="f_realname" class="form-control" placeholder="İsim & Soyisim">
 								    </div>
-									  <div id="f_name_hata" class="label label-warning">Lütfen İsim ve Soyadınızı giriniz.</div>
+									  <div id="f_name_hata" class="badge badge-warning">Lütfen İsim ve Soyadınızı giriniz.</div>
 								  </div>
 								  <div class="form-group">
 								  	<div class="input-group">
 									  	<span class="input-group-addon">Telefon Numaranız</span>
 									    <input type="phonenumber" name="f_telno" class="form-control" id="f_telno" placeholder="0xxxxxxxxxx">
 									  </div>
-									  <div id="f_tel_hata" class="label label-warning">Lütfen telefon numaranızı başında alan kodunuz ile birlikte 10 hane olarak giriniz</div>
-								  </div>
-								  <div class="form-check">
-								    <label class="form-check-label">
-								      <input type="checkbox" class="form-check-input" id="note-checkbox" v-model="checked">
-								      <i class="fa fa-star-half-o" aria-hidden="true"></i> Eklemek istediğiniz notunuz?
-								    </label>
-								    <textarea class="form-control" id="noteTextarea" rows="3" v-show=" checkbox = checked "></textarea>
+									  <div id="f_tel_hata" class="badge badge-warning">Lütfen telefon numaranızı başında alan kodunuz ile birlikte 10 hane olarak giriniz</div>
 								  </div>
 						  </div>
 
@@ -247,7 +265,7 @@ include("header.php");
 	</div>
 </section>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
 <script type="text/javascript">
 const shop = [

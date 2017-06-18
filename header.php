@@ -23,10 +23,8 @@
 
 <!-- CSS
 ================================================== -->
-<!-- Normalize CSS -->
-<link rel="stylesheet" href="assets/css/normalize.css" type="text/css" />
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 <!-- Costom CSS -->
 <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 <!-- Font Awesome  CSS -->
