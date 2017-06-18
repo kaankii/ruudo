@@ -34,7 +34,7 @@ button, input, optgroup, select, textarea { font-family: 'Raleway', sans-serif; 
 
 /* Demo Styles
 ================================================== */
-.jumbotron { background-color: #444; color: #fff; padding: 3rem 2rem; }
+.jumbotron { background-color: #444; color: #fff; padding: 3rem 2rem; border-radius: 0; }
 .jumbotron .ruudo-icon { color: #f7a707; }
 
 #talep-form-test-section { margin-bottom: 30px; }
@@ -60,7 +60,7 @@ button, input, optgroup, select, textarea { font-family: 'Raleway', sans-serif; 
 /* -clear fix */
 .urun-grid:after { content: ''; display: block; clear: both; }
 /* -isotope item */
-.item { width: 49%; margin-right: 1%; float: left; }
+.urun-grid .item { width: 49%; margin-right: 1%; float: left; }
 
 
 /* Genel */
@@ -102,6 +102,7 @@ button, input, optgroup, select, textarea { font-family: 'Raleway', sans-serif; 
   box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.3);
 }
 .shop li div p { margin-bottom: 2px; }
+.shop li img { width: 75px; float: right; }
 .shop .sepete-ekle-btn {
   color: white;
   border: 0;
@@ -184,7 +185,9 @@ button, input, optgroup, select, textarea { font-family: 'Raleway', sans-serif; 
 
 @media (max-width: 1199px) {}
 @media (max-width: 991px) {}
-@media (max-width: 767px) {}
+@media (max-width: 767px) {
+  .urun-grid .item { width: 100%; margin-right: 0; }
+}
 @media (max-width: 543px) {}
 
 /* #Browser Sellector Styles

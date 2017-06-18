@@ -31,7 +31,7 @@ include("header.php");
 	<div class="row">
 
 		<!-- Filtreler -->
-		<div class="col-md-4">
+		<div class="col-lg-4">
 			<h4><strong>Filtreler</strong></h4>
 			<div id="filter-section" class="filters">
 				<div class="row search-box">
@@ -68,7 +68,7 @@ include("header.php");
 		</div>
 
 		<!-- Ürünlerin Listelendiği Yer -->
-		<div class="col-md-8">
+		<div class="col-lg-8">
 			<div id="app">
 			  <div class="header">
 			    <h4><strong>Ürünler</strong></h4>
@@ -138,27 +138,26 @@ include("header.php");
 		      <ul class="urun-grid">
 		        <li v-for="item in shop" class="item {{ item.class }}">
 		          <div>
+							  <img v-show="item.image != ''" class="" src="{{ item.image }}" alt="Çörek dereotlu peynirli {{ item.class }}">
 		            <h5><strong>{{ item.name }}</strong></h5>
 		            <p>{{ item.oz }}</p>
 		            <strong>{{ item.price }}<i class="fa fa-try" aria-hidden="true"></i></strong> <span class="badge badge-info" v-show="item.checkedNames.length > 0" style="font-size: 60%;"> <i class="fa fa-star-half-o" aria-hidden="true"></i> {{ item.checkedNames }}</span>
 		            <br>
 		            <button class="sepete-ekle-btn btn btn-sm" @click="addToCart(item)">Sepete Ekle</button>
 
-  <div class="popover_parent" v-show="item.ozellestirOptions != ''">
-  <a href="javascript:void(0)" class="btn btn-outline-info btn-sm" role="button"><i class="fa fa-star-half-o" aria-hidden="true"></i> Özelleştir</a>
-		<fieldset class="popover-extra search">
-			<ul>
-	    	<li v-for="ozellestir in item.ozellestirOptions">
-		    	<label class="form-check-label">
-			    	<input type="checkbox" value="{{ ozellestir.text }}" v-model="item.checkedNames">
-			    	{{ ozellestir.text }}
-		    	</label>
-	    	</li>
-	  	</ul>
-  	</fieldset>
-  </div>		            
-
-
+							  <div class="popover_parent" v-show="item.ozellestirOptions != ''">
+							  <a href="javascript:void(0)" class="btn btn-outline-info btn-sm" role="button"><i class="fa fa-star-half-o" aria-hidden="true"></i> Özelleştir</a>
+									<fieldset class="popover-extra search">
+										<ul>
+								    	<li v-for="ozellestir in item.ozellestirOptions">
+									    	<label class="form-check-label">
+										    	<input type="checkbox" value="{{ ozellestir.text }}" v-model="item.checkedNames">
+										    	{{ ozellestir.text }}
+									    	</label>
+								    	</li>
+								  	</ul>
+							  	</fieldset>
+							  </div>		            
 		          </div>
 		        </li>
 		      </ul>
