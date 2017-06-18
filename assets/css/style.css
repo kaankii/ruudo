@@ -3,6 +3,13 @@ body { font-family: 'Raleway', sans-serif; font-weight: 300; background-color: #
 
 button, input, optgroup, select, textarea { font-family: 'Raleway', sans-serif; }
 
+.copy-not {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */      
+}
+
 /* Ruudo Logo Font 
 ================================================== */
 @font-face {
@@ -112,12 +119,23 @@ button, input, optgroup, select, textarea { font-family: 'Raleway', sans-serif; 
 }
 .shop .sepete-ekle-btn:hover { background: #d28c00; }
 
+.item .fiyat-porsiyon-box { display: inline-block; border: 1px solid rgba(0, 0, 0, 0.2); padding: 1px 5px; border-radius: 5px; margin-bottom: 4px; float: left; }
+.item .fiyat-porsiyon-box .fiyat { font-size: 1.2rem; font-family: 'Montserrat', sans-serif; }
+.item .fiyat-porsiyon-box .fiyat i { font-size: 1rem; }
+.item .fiyat-porsiyon-box .porsiyon { color: #008000; font-size: 0.7rem; margin-top: -5px; }
+.item .ozellik-info { margin-bottom: 3px; display: block; overflow: hidden; }
+.item .ozellik-info ul { font-family: 'Montserrat', sans-serif; margin-bottom: 5px; }
+.item .ozellik-info ul li { float: left; font-weight: 400; font-size: 0.8rem; margin-right: 10px; border: 1px solid rgba(0, 0, 0, 0.2); padding: 1px 3px; border-radius: 5px; }
+.item .ozellik-info ul li:hover { color: #fff; background-color: #008000; cursor: default; }
+.item .ozellik-extra { display: block; float: left; margin: 0px 0px 0px 5px; position: relative; }
+
 /* Popover-extra / Ürün özelleştirme için eklendi */
 .popover_parent { position: relative; display: inline-block; }
 .popover-extra { display: none; background: #F4F4F4; padding: 10px; border-radius: 4px; position: absolute; top: 30px; z-index: 1; width: 200px; 
   border: 1px solid rgba(0, 0, 0, 0.05); box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.3); }
 .popover:before { content: ""; position: absolute; left: 30px; top: -20px; width: 0; height: 0; border: 10px solid transparent; border-bottom: 10px solid #F4F4F4; }
 
+.popover-extra .form-check-label { padding-left: 0.5rem; }
 .active .popover-extra { display: block; }
 .active a { background: #4ba9c5!important; color: #fff; }
 

@@ -140,9 +140,23 @@ include("header.php");
 		          <div>
 							  <img v-show="item.image != ''" class="" src="{{ item.image }}" alt="Çörek dereotlu peynirli {{ item.class }}">
 		            <h5><strong>{{ item.name }}</strong></h5>
-		            <p>{{ item.oz }}</p>
-		            <strong>{{ item.price }}<i class="fa fa-try" aria-hidden="true"></i></strong> <span class="badge badge-info" v-show="item.checkedNames.length > 0" style="font-size: 60%;"> <i class="fa fa-star-half-o" aria-hidden="true"></i> {{ item.checkedNames }}</span>
-		            <br>
+		            <p>{{ item.metin }}</p>
+		            <div style="display: block; overflow: hidden;">
+			            <div class="fiyat-porsiyon-box">
+				            <ul>
+				            	<li class="fiyat"><strong>{{ item.price }} <i class="fa fa-try" aria-hidden="true"></i></strong></li>
+				            	<li class="porsiyon" v-show="item.porsiyon != ''">{{ item.porsiyon }}</li>
+				            </ul>
+				          </div>
+				          <div class="ozellik-extra">
+				          	<span class="badge badge-info" v-show="item.checkedNames.length > 0" style="font-size: 60%;"> <i class="fa fa-star-half-o" aria-hidden="true"></i> {{ item.checkedNames }}</span>
+				          </div>		            	
+		            </div>
+			          <div class="ozellik-info">
+			          	<ul>
+			          		<li class="copy-not" transition="fade" v-for="ozellik in item.ozellikInfo">{{ ozellik.text }}</li>
+			          	</ul>
+			          </div>
 		            <button class="sepete-ekle-btn btn btn-sm" @click="addToCart(item)">Sepete Ekle</button>
 
 							  <div class="popover_parent" v-show="item.ozellestirOptions != ''">
