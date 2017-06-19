@@ -101,7 +101,7 @@ button, input, optgroup, select, textarea { font-family: 'Raleway', sans-serif; 
 .sepet-elemani .sepet-adet,
 .sepet-elemani .sepet-ozellik { float: left; }
 .sepet-elemani .sepet-ozellik { display: block; overflow: hidden; }
-
+.sepet-elemani .sepet-adet { margin-right: 5px; }
 .sepet-elemani .fa-trash { color: #a23f3f; cursor: pointer; }
 .sepet-elemani .fa-trash:hover { opacity: 0.8; }
 .sepet-elemani.kargo-line { color: #cc8500; }
