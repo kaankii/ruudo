@@ -93,7 +93,10 @@ include("header.php");
 						      <ul>
 						        <li v-for="item in items" transition="fade">
 						          <div class="sepet-elemani">
-						          	{{ item.name }} - <strong>{{ item.quantity }} Adet</strong> <i class="fa fa-trash" @click="removeFromCart(item)"></i>  <span class="secili-ozellik badge badge-info" v-show="item.checkedNames.length > 0"><i class="fa fa-star-half-o" aria-hidden="true"></i> {{ item.checkedNames }}</span>
+						          	<div class="sepet-urun">{{ item.name }} -</div>
+						          	<div class="sepet-adet"><strong>{{ item.quantity }} Adet</strong> <i class="fa fa-trash" @click="removeFromCart(item)"></i></div>
+						          	<div class="sepet-ozellik"><span class="secili-ozellik badge badge-info" v-show="item.checkedNames.length > 0"><i class="fa fa-star-half-o" aria-hidden="true"></i> {{ item.checkedNames }}</span></div>
+						          	   
 						          	<span class="sepet-eleman-fiyati"><strong>{{ item.price * item.quantity }}</strong><i class="fa fa-try" aria-hidden="true"></i></span>
 						          </div>
 						        </li>
@@ -199,7 +202,13 @@ include("header.php");
 					      <ul>
 					        <li v-for="item in items" transition="fade">
 					          <div class="sepet-elemani">
-					          	{{ item.name }} - <strong>{{ item.quantity }} Adet</strong> <span class="secili-ozellik badge badge-info" v-show="item.checkedNames.length > 0"><i class="fa fa-star-half-o" aria-hidden="true"></i> {{ item.checkedNames }}</span>
+					          	<div class="sepet-urun">{{ item.name }} - </div>
+					          	<div class="sepet-adet"><strong>{{ item.quantity }} Adet</strong> </div>
+					          	<div class="sepet-ozellik">
+					          		<span class="secili-ozellik badge badge-info" v-show="item.checkedNames.length > 0">
+					         				<i class="fa fa-star-half-o" aria-hidden="true"></i> {{ item.checkedNames }}
+					         			</span>
+					         		</div>
 					          	<span class="sepet-eleman-fiyati"><strong>{{ item.price * item.quantity }}</strong><i class="fa fa-try" aria-hidden="true"></i></span>
 					          </div>
 					        </li>
@@ -245,6 +254,10 @@ include("header.php");
 									    </label>
 									    <textarea class="form-control" id="f_talepnote" rows="3" v-show=" checkbox = checked " type="note" name="f_talepnote"></textarea>
 									  </div>
+								  </div>
+								  <div class="form-group" v-show="cargoSection === 1">
+								    <label for="address">Teslimat Adresi</label>
+								    <textarea class="form-control" id="f_address" name="f_address" rows="2" placeholder="Adresiniz"></textarea>
 								  </div>
 								  <div class="form-group">
 								  	<div class="input-group">

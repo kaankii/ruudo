@@ -77,6 +77,7 @@ button, input, optgroup, select, textarea { font-family: 'Raleway', sans-serif; 
   background: #f7a707;
   transition: all .1s ease-out;
   color: #fff;
+  cursor: pointer;
 }
 #talep-form-page .header button.eklendi { background: #008000; }
 
@@ -95,6 +96,12 @@ button, input, optgroup, select, textarea { font-family: 'Raleway', sans-serif; 
 .cart .toplam-fiyat { display: block; text-align: right; }
 
 .sepet-eleman-fiyati { float: right; }
+.sepet-elemani { display: block; overflow: hidden; }
+.sepet-elemani .sepet-urun,
+.sepet-elemani .sepet-adet,
+.sepet-elemani .sepet-ozellik { float: left; }
+.sepet-elemani .sepet-ozellik { display: block; overflow: hidden; }
+
 .sepet-elemani .fa-trash { color: #a23f3f; cursor: pointer; }
 .sepet-elemani .fa-trash:hover { opacity: 0.8; }
 .sepet-elemani.kargo-line { color: #cc8500; }
@@ -122,14 +129,14 @@ button, input, optgroup, select, textarea { font-family: 'Raleway', sans-serif; 
 }
 .shop .sepete-ekle-btn:hover { background: #d28c00; }
 
-.item .fiyat-porsiyon-box { display: inline-block; border: 1px solid rgba(0, 0, 0, 0.2); padding: 1px 5px; border-radius: 5px; margin-bottom: 5px; float: left; }
+.item .fiyat-porsiyon-box { display: inline-block; border: 1px solid rgba(0, 0, 0, 0.2); padding: 1px 5px; border-radius: 2px; margin-bottom: 5px; float: left; }
 .item .fiyat-porsiyon-box .fiyat { font-size: 1.2rem; font-family: 'Montserrat', sans-serif; }
 .item .fiyat-porsiyon-box .fiyat i { font-size: 1rem; }
 .item .fiyat-porsiyon-box .porsiyon { color: #008000; font-size: 0.7rem; margin-top: -5px; }
 
 .item .ozellik-info { margin-bottom: 5px; display: block; overflow: hidden; }
 .item .ozellik-info ul { font-family: 'Montserrat', sans-serif; margin-bottom: 5px; }
-.item .ozellik-info ul li { float: left; font-weight: 400; font-size: 0.8rem; margin-right: 10px; border: 1px solid rgba(0, 0, 0, 0.2); padding: 1px 3px; border-radius: 5px; }
+.item .ozellik-info ul li { float: left; font-weight: 400; font-size: 0.8rem; margin-right: 10px; border: 1px solid rgba(0, 0, 0, 0.2); padding: 1px 3px; border-radius: 2px; }
 .item .ozellik-info ul li:hover { color: #fff; background-color: #008000; cursor: default; }
 .item .ozellik-extra { display: block; float: left; margin: 0px 0px 0px 5px; position: relative; }
 
@@ -242,7 +249,11 @@ button, input, optgroup, select, textarea { font-family: 'Raleway', sans-serif; 
 @media (max-width: 767px) {
   .urun-grid .item { width: 100%; margin-right: 0; }
 }
-@media (max-width: 543px) {}
+@media (max-width: 543px) {
+  #filter-section .btn { font-size: 9px; }
+  .item .ozellik-info ul li { margin: 0 10px 3px 0; }
+  .sepet-elemani { font-size: 0.8rem; }
+}
 
 /* #Browser Sellector Styles
 ================================================== */ 
