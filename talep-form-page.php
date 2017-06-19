@@ -73,7 +73,7 @@ include("header.php");
 			  <div class="header">
 			    <h4><strong>Ürünler</strong></h4>
 			    <div class="sepet-btn-content">
-			      <button class="btn btn-secondary" @click="showCart = !showCart" v-show="!verified" data-toggle="modal" data-target="#checkout-Modal">
+			      <button id="sepet-box" class="btn btn-secondary" @click="showCart = !showCart" v-show="!verified" data-toggle="modal" data-target="#checkout-Modal">
 			        <i class="fa fa-shopping-cart" aria-hidden="true"></i> {{ items.length + (items.length > 1 || items.length === 0 ? " Ürün" : " Ürün") }} 
 			      </button>
 			    </div>
@@ -157,10 +157,9 @@ include("header.php");
 			          		<li class="copy-not" transition="fade" v-for="ozellik in item.ozellikInfo">{{ ozellik.text }}</li>
 			          	</ul>
 			          </div>
-		            <button class="sepete-ekle-btn btn btn-sm" @click="addToCart(item)">Sepete Ekle</button>
 
 							  <div class="popover_parent" v-show="item.ozellestirOptions != ''">
-							  <a href="javascript:void(0)" class="btn btn-outline-info btn-sm" role="button"><i class="fa fa-star-half-o" aria-hidden="true"></i> Özelleştir</a>
+							  	<a href="javascript:void(0)" class="btn btn-outline-info btn-sm" role="button"><i class="fa fa-star-half-o" aria-hidden="true"></i> Özelleştir</a>
 									<fieldset class="popover-extra search">
 										<ul>
 								    	<li v-for="ozellestir in item.ozellestirOptions">
@@ -172,6 +171,9 @@ include("header.php");
 								  	</ul>
 							  	</fieldset>
 							  </div>		            
+		            <button class="sepete-ekle-btn btn btn-sm" @click="addToCart(item)">
+		            	<span class="ani-plus"><span class="urun-adet" v-show="item.quantity > 0">{{ item.quantity }}</span>Sepete Ekle </span>
+		            </button>
 		          </div>
 		        </li>
 		      </ul>
@@ -360,7 +362,13 @@ const vm = new Vue({
   }
 });
 </script>
-
+<script type="text/javascript">
+	console.log('start');
+	$('.sepete-ekle-btn').on('click', function() {
+	  $('#sepet-box').addClass('eklendi');
+	  setTimeout(function(){ $('#sepet-box').removeClass('eklendi');; }, 200);
+	});
+</script>
 
 <?php
 include("footer.php");
