@@ -12,7 +12,7 @@ include("header.php");
 <!-- section: slider -->
 <section id="slider">
 	<div class="container">
-		Lorem sit amet.
+		<a href="talep-form-page.php">Sepet Sayfası</a>
 	</div>
 </section>
 <!-- /section: slider -->
