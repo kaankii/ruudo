@@ -21,11 +21,11 @@ $mail->CharSet  ="utf-8";
 $mail->Username = "testmelih@yandex.com"; // Gönderici adresinizin sunucudaki kullanıcı adı (e-posta adresiniz)
 $mail->Password = "test9966"; // Mail adresimizin sifresi
 $mail->SetFrom("testmelih@yandex.com", "RUUDO"); // Mail atıldığında gorulecek isim ve email (genelde yukarıdaki username kullanılır)
-$mail->AddAddress("melihsahinkesen@hotmail.com"); // Mailin gönderileceği alıcı adres
-//$mail->AddCC('kaan@logocum.net');
+$mail->AddAddress("kaanozcorekci@gmail.com"); // Mailin gönderileceği alıcı adres
+$mail->AddCC('melihsahinkesen@hotmail.com');
 //$mail->AddCC('info@logocum.net');
 $mail->Subject = "Ruudo - Talep formu dolduruldu"; // Email konu başlığı
-$mail->Body = "<strong>$from</strong><br><br> <strong>İsim:</strong> $name<br> <strong>Telefon:</strong> $telef<br> <strong>Toplam Ücret:</strong> $total TL<br> <strong>Müşteri Notu:</strong> $note<br> <strong>Adersi:</strong> $address<br><br> <strong>Sepettekiler:</strong><br>$sepet<br><br> "; // Mailin içeriği
+$mail->Body = "<strong>$from</strong><br><br> <strong>İsim:</strong> $name<br> <strong>Telefon:</strong> $telef<br> <strong>Adersi:</strong> $address<br> <strong>Müşteri Notu:</strong> $note<br><br> <strong>Sepettekiler:</strong><br>$sepet<br><br> <strong>Toplam Ücret:</strong> $total TL<br> "; // Mailin içeriği
 
 if(!$mail->Send()){
 	//echo "Email Gönderim Hatasi: ".$mail->ErrorInfo;

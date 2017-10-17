@@ -32,6 +32,27 @@ $(document).ready( function() {
     buttonFilter = concatValues( buttonFilters ) || '*';
     // Log out current filter to check that it's working when clicked
     console.log( buttonFilter )
+    var changefilter = buttonFilter.toString();
+    changefilter = changefilter.replace(/\./gi, ' • ')
+      .replace('glutensiz', 'Glutensiz')
+      .replace('vegan', 'Vegan')
+      .replace('sekersiz', 'Şekersiz')
+      .replace('yumurtasiz', 'Yumurtasız')
+      .replace('sutsuz', 'Sütsüz')
+      .replace('unsuz', 'Unsuz')
+      .replace('corek', 'Çörekler')
+      .replace('muffin', 'Muffinler')
+      .replace('sandvic', 'Sandviçler')
+      .replace('kurabiye', 'Kurabiyeler')
+      .replace('kek', 'Kekler')
+      .replace('ekmek', 'Ekmekler')
+      .replace('enerjibar', 'Enerji Barlar')
+      .replace('yaspasta', 'Yaş Pastalar')
+      .replace('kahve', 'Kahveler')
+      .replace('kargo', 'Kargolanabilir')
+      .replace(' • ', '')
+      .replace('*', '');
+    document.getElementById("filtreli-urun").innerHTML =  changefilter;
     // Trigger isotope again to refresh layout
     $grid.isotope();
   });
@@ -43,6 +64,7 @@ $(document).ready( function() {
       $buttonGroup.on( 'click', '.btn-filter', function() {
           $buttonGroup.find('.is-checked').removeClass('is-checked');
           $(this).addClass('is-checked');
+
       });
   });
 

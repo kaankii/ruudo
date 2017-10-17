@@ -15,3 +15,8 @@ $kargoUcreti=10;
 // Kargo kampanya ücreti
 $kargoKampanyaUcreti=100;
 
+// ÜRÜNLER SAYFASI
+// =======================================
+// Alt Afiş
+$urunAltAfis= $kargoKampanyaUcreti."TL ÜZERİ KARGO ÜCRETSİZ";
+

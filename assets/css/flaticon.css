@@ -1,0 +1,43 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 08/10/2017 01:55
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("../fonts/Flaticon.eot");
+  src: url("../fonts/Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("../fonts/Flaticon.woff") format("woff"),
+       url("../fonts/Flaticon.ttf") format("truetype"),
+       url("../fonts/Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("../fonts/Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+  font-style: normal;
+}
+
+.flaticon-transport:before { content: "\f100"; }
+.flaticon-ruudo:before { content: "\f101"; }
+.flaticon-weight:before { content: "\f102"; }
+.flaticon-healthy:before { content: "\f103"; }
+.flaticon-calories:before { content: "\f104"; }
+.flaticon-cooker:before { content: "\f105"; }
+.flaticon-chef-1:before { content: "\f106"; }
+.flaticon-book:before { content: "\f107"; }
+.flaticon-chef:before { content: "\f108"; }
+.flaticon-star:before { content: "\f109"; }
+.flaticon-recipe:before { content: "\f10a"; }
+.flaticon-vegetables:before { content: "\f10b"; }
+.flaticon-food:before { content: "\f10c"; }
+.flaticon-groceries:before { content: "\f10d"; }
