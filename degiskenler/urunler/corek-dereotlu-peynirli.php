@@ -17,6 +17,7 @@
     checkedNames: [],
     ozellestirOptions: [
         { text: 'Peynirsiz' }, 
+		{ text: 'Çöreksiz' } 
         { text: 'Dereotsuz' } 
     ],
     class: 'corek glutensiz kargo sekersiz'
